@@ -1,1731 +1,899 @@
-DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Moein Rezaie - Professional Python Backend Developer specializing in Django, DRF, FastAPI, PostgreSQL, and scalable system architecture.">
     <title>Moein Rezaie · Backend Developer</title>
 
-
-
     <!-- Tailwind CSS -->
-
     <script src="https://cdn.tailwindcss.com"></script>
 
-
-
     <!-- Font Awesome -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
-
     <!-- Swiper CSS -->
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-
-
     <!-- GLightbox CSS -->
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 
-
-
     <!-- Google Font: Inter -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-
-
     <style>
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
         body {
-
             font-family: 'Inter', sans-serif;
-
             background: #0b0e14;
-
             color: #d1d5db;
-
             overflow-x: hidden;
-
             position: relative;
-
             line-height: 1.6;
-
         }
-
-
-
+        
         /* Subtle Animated Background Glow */
-
         body::before {
-
             content: '';
-
             position: fixed;
-
             top: -20%;
-
             left: -10%;
-
             width: 50vw;
-
             height: 50vw;
-
             background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
-
             border-radius: 50%;
-
             z-index: -1;
-
             animation: float 15s infinite ease-in-out;
-
         }
-
         body::after {
-
             content: '';
-
             position: fixed;
-
             bottom: -20%;
-
             right: -10%;
-
             width: 60vw;
-
             height: 60vw;
-
             background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-
             border-radius: 50%;
-
             z-index: -1;
-
             animation: float 20s infinite ease-in-out reverse;
-
         }
-
         @keyframes float {
-
             0%, 100% { transform: translate(0, 0); }
-
             50% { transform: translate(30px, 50px); }
-
         }
-
-
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-
-
         /* ====== GLASS EFFECT ====== */
-
         .glass {
-
             background: rgba(255, 255, 255, 0.03);
-
             backdrop-filter: blur(12px);
-
             -webkit-backdrop-filter: blur(12px);
-
             border: 1px solid rgba(255, 255, 255, 0.06);
-
         }
-
         .glass-hover {
-
             transition: all 0.3s ease;
-
         }
-
         .glass-hover:hover {
-
             border-color: rgba(99, 102, 241, 0.5);
-
             box-shadow: 0 8px 30px -8px rgba(99, 102, 241, 0.2);
-
             transform: translateY(-3px);
-
         }
-
-
 
         /* ====== SKILL TAGS ====== */
-
         .skill-tag {
-
             background: rgba(99, 102, 241, 0.1);
-
             border: 1px solid rgba(99, 102, 241, 0.2);
-
             transition: all 0.25s ease;
-
             cursor: default;
-
             font-weight: 500;
-
             letter-spacing: 0.01em;
-
             display: inline-block;
-
         }
-
         .skill-tag:hover {
-
             background: rgba(99, 102, 241, 0.25);
-
             transform: translateY(-2px);
-
             border-color: #818cf8;
-
             box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
-
             color: #fff;
-
         }
-
-
 
         /* ====== PROFILE IMAGE - BIGGER & BETTER ====== */
-
         .profile-img-wrapper {
-
             position: relative;
-
             display: inline-block;
-
         }
-
         .profile-img-wrapper::before {
-
             content: '';
-
             position: absolute;
-
             inset: -6px;
-
             border-radius: 2.5rem;
-
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(139, 92, 246, 0.6), rgba(236, 72, 153, 0.4));
-
             z-index: -1;
-
             filter: blur(12px);
-
             opacity: 0.7;
-
             transition: all 0.4s ease;
-
         }
-
         .profile-img-wrapper:hover::before {
-
             inset: -10px;
-
             opacity: 1;
-
             filter: blur(18px);
-
         }
-
         .profile-img {
-
             width: 260px;
-
             height: 260px;
-
             object-fit: cover;
-
             object-position: top center;
-
             border-radius: 2rem;
-
             border: 3px solid rgba(99, 102, 241, 0.5);
-
             flex-shrink: 0;
-
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
             position: relative;
-
             z-index: 1;
-
         }
-
         .profile-img:hover {
-
             transform: scale(1.03);
-
             border-color: rgba(99, 102, 241, 0.9);
-
         }
-
         @media (min-width: 768px) {
-
             .profile-img { width: 340px; height: 340px; border-radius: 2.5rem; }
-
         }
-
-
 
         /* ====== BADGE STYLING ====== */
-
         .badge {
-
             display: inline-flex;
-
             align-items: center;
-
             gap: 0.4rem;
-
             background: rgba(255,255,255,0.05);
-
             padding: 0.4rem 0.9rem;
-
             border-radius: 9999px;
-
             font-size: 0.85rem;
-
             font-weight: 500;
-
             color: #d1d5db;
-
             border: 1px solid rgba(255,255,255,0.08);
-
         }
-
-
 
         /* ====== INFO CHIPS ====== */
-
         .info-chip {
-
             display: inline-flex;
-
             align-items: center;
-
             gap: 0.5rem;
-
             background: rgba(99, 102, 241, 0.08);
-
             border: 1px solid rgba(99, 102, 241, 0.15);
-
             padding: 0.5rem 1rem;
-
             border-radius: 9999px;
-
             font-size: 0.9rem;
-
             color: #c7d2fe;
-
             transition: all 0.3s;
-
         }
-
         .info-chip:hover {
-
             background: rgba(99, 102, 241, 0.15);
-
             border-color: rgba(99, 102, 241, 0.4);
-
         }
-
-        .info-chip i {
-
-            color: #818cf8;
-
-        }
-
-
+        .info-chip i { color: #818cf8; }
 
         /* ====== SWIPER & GLIGHTBOX ====== */
-
         .swiper { width: 100%; border-radius: 1rem; overflow: hidden; }
-
         .swiper-slide img {
-
             width: 100%; height: 240px; object-fit: cover; border-radius: 0.75rem;
-
             transition: transform 0.3s; cursor: pointer;
-
         }
-
         .swiper-slide img:hover { transform: scale(1.02); }
-
         .swiper-button-next, .swiper-button-prev {
-
             color: #818cf8 !important; background: rgba(0, 0, 0, 0.5);
-
             width: 36px; height: 36px; border-radius: 50%; backdrop-filter: blur(4px);
-
         }
-
         .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.2rem !important; font-weight: 700; }
-
         .swiper-pagination-bullet { background: #818cf8 !important; opacity: 0.6; }
-
         .swiper-pagination-bullet-active { opacity: 1; background: #818cf8 !important; }
-
-
-
+        
         @media (max-width: 768px) { .swiper-slide img { height: 180px; } }
 
-
-
         /* ====== SCROLL TO TOP ====== */
-
         #scrollToTop {
-
             opacity: 0; pointer-events: none; transition: all 0.3s ease;
-
         }
-
         #scrollToTop.visible { opacity: 1; pointer-events: auto; }
 
-
-
         /* ====== EXPERIENCE LIST ====== */
-
         .exp-list li {
-
             position: relative;
-
             padding-left: 1.25rem;
-
             margin-bottom: 0.5rem;
-
             color: #cbd5e1;
-
             font-size: 0.95rem;
-
         }
-
         .exp-list li::before {
-
             content: '▸';
-
             position: absolute;
-
             left: 0;
-
             color: #818cf8;
-
             font-weight: bold;
-
         }
-
-
 
         /* ====== SECTION TITLE ====== */
-
         .section-title {
-
             font-size: 1.75rem;
-
             font-weight: 700;
-
             color: #fff;
-
             margin-bottom: 2rem;
-
             display: flex;
-
             align-items: center;
-
             gap: 0.75rem;
-
             padding-bottom: 0.75rem;
-
             border-bottom: 2px solid rgba(99, 102, 241, 0.2);
-
         }
-
-        .section-title i {
-
-            color: #818cf8;
-
-        }
-
-
+        .section-title i { color: #818cf8; }
 
         /* ====== NAV DOTS ====== */
-
         .nav-dot {
-
             position: fixed;
-
             right: 1.5rem;
-
             top: 50%;
-
             transform: translateY(-50%);
-
             z-index: 40;
-
             display: flex;
-
             flex-direction: column;
-
             gap: 0.75rem;
-
         }
-
         .nav-dot a {
-
             width: 10px;
-
             height: 10px;
-
             border-radius: 50%;
-
             background: rgba(255, 255, 255, 0.2);
-
             transition: all 0.3s;
-
         }
-
         .nav-dot a:hover, .nav-dot a.active {
-
             background: #818cf8;
-
             transform: scale(1.3);
-
         }
-
-        @media (max-width: 1024px) {
-
-            .nav-dot { display: none; }
-
-        }
-
+        @media (max-width: 1024px) { .nav-dot { display: none; } }
     </style>
-
 </head>
-
 <body>
 
-
-
     <!-- Navigation Dots (Desktop Only) -->
-
     <nav class="nav-dot">
-
         <a href="#home" title="Home"></a>
-
         <a href="#skills" title="Skills"></a>
-
         <a href="#experience" title="Experience"></a>
-
         <a href="#projects" title="Projects"></a>
-
         <a href="#languages" title="Languages"></a>
-
     </nav>
 
-
-
     <!-- Scroll to Top Button -->
-
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 z-50 flex items-center justify-center text-lg">
-
         <i class="fas fa-arrow-up"></i>
-
     </button>
 
-
-
     <!-- ============================================================ -->
-
     <!-- HEADER / PROFILE                                             -->
-
     <!-- ============================================================ -->
-
     <header id="home" class="container py-12 md:py-16">
-
         <div class="flex flex-col md:flex-row-reverse items-center md:items-center gap-10 md:gap-14">
-
-
-
+            
             <!-- Avatar - Right Side on Desktop -->
-
             <div class="flex-shrink-0 flex flex-col items-center gap-5">
-
                 <div class="profile-img-wrapper">
-
                     <img src="assets/images/my-pic.png" alt="Moein Rezaie" class="profile-img">
-
                 </div>
-
-
-
+                
                 <!-- GitHub Stats -->
-
                 <div class="flex flex-wrap justify-center gap-3 mt-2">
-
                     <span class="badge">
-
                         <i class="fas fa-star text-yellow-400"></i> 
-
                         <span id="totalStars" class="ml-1"><i class="fas fa-spinner fa-spin text-xs"></i></span> Stars
-
                     </span>
-
                     <img src="https://komarev.com/ghpvc/?username=moeinrezai&color=6366f1&style=flat-square&label=Views" 
-
                          alt="Profile Views" class="h-7 rounded-md" title="Real GitHub Profile Views">
-
                 </div>
-
             </div>
-
-
 
             <!-- Info - Left Side on Desktop -->
-
             <div class="flex-1 text-center md:text-left">
-
                 <div class="inline-block px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-xs text-indigo-300 font-semibold uppercase tracking-wider mb-4">
-
                     Backend Developer · Python Expert
-
                 </div>
-
-
-
+                
                 <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-3">Moein Rezaie</h1>
-
-
-
+                
                 <!-- Typing Animation -->
-
                 <p class="text-xl md:text-2xl text-indigo-400 font-medium h-9">
-
                     <span id="typing-text"></span><span class="animate-pulse text-indigo-300">|</span>
-
                 </p>
-
-
 
                 <!-- Info Chips -->
-
                 <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-
                     <span class="info-chip">
-
                         <i class="fas fa-map-marker-alt"></i> Mazandaran, Iran
-
                     </span>
-
                     <span class="info-chip">
-
                         <i class="fas fa-phone"></i> +98 911 357 167
-
                     </span>
-
                     <span class="info-chip">
-
                         <i class="fas fa-envelope"></i> moeinrezaie516@gmail.com
-
                     </span>
-
                 </div>
-
-
 
                 <!-- Social Links -->
-
                 <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-
                     <a href="https://github.com/moeinrezai" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
-
                         <i class="fab fa-github text-lg"></i> GitHub
-
                     </a>
-
                     <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
-
                         <i class="fab fa-linkedin-in text-lg"></i> LinkedIn
-
                     </a>
-
                     <a href="https://t.me/moein9401" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
-
                         <i class="fab fa-telegram-plane text-lg"></i> Telegram
-
                     </a>
-
                     <a href="mailto:moeinrezaie516@gmail.com" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
-
                         <i class="fas fa-envelope text-lg"></i> Email
-
                     </a>
-
-                    <a href="tel:+989113571670" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
-
+                    <a href="tel:+98911357167" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
                         <i class="fas fa-phone-alt text-lg"></i> Call
-
                     </a>
-
                 </div>
-
-
 
                 <!-- Download CV -->
-
                 <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
-
                     <a href="assets/moein-rezaie-EN.pdf" download class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-lg shadow-indigo-500/30">
-
-                        <i class="fas fa-file-pdf"></i> Download Full Resume
-
+                        <i class="fas fa-file-pdf"></i> Download English Resume
                     </a>
-
-                </div>
-
-                <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
-
                     <a href="assets/Moein-Reazaie-Fa.pdf" download class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-lg shadow-indigo-500/30">
-
-                        <i class="fas fa-file-pdf"></i> رزومه فارسی
-
+                        <i class="fas fa-file-pdf"></i> دانلود رزومه فارسی
                     </a>
-
                 </div>
-
             </div>
-
         </div>
-
     </header>
 
-
-
     <!-- ============================================================ -->
-
     <!-- PROFESSIONAL SUMMARY                                         -->
-
     <!-- ============================================================ -->
-
     <section class="container py-10">
-
         <div class="glass p-8 rounded-2xl border border-gray-800">
-
             <h2 class="section-title">
-
                 <i class="fas fa-user-tie"></i> Professional Summary
-
             </h2>
-
             <div class="text-gray-300 leading-relaxed text-base md:text-lg space-y-4">
-
                 <p>
-
                     Python Backend Developer with hands-on experience building backend systems.
-
                     Focused on developing software with <strong class="text-indigo-300">clean structure, security, maintainability, and scalability</strong>, while continuously learning and keeping my technical knowledge up to date.
-
                 </p>
-
                 <p>
-
                     I may not always have complete knowledge or an immediate answer to every problem, but
-
                     when I encounter a knowledge gap or weakness, I take responsibility, learn what is
-
                     needed, and work to improve both myself and the final solution. I consider <strong class="text-indigo-300">accountability, quality, and continuous growth</strong> essential parts of being a professional software engineer.
-
                 </p>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- ============================================================ -->
-
     <!-- TECHNICAL SKILLS                                             -->
-
     <!-- ============================================================ -->
-
     <section id="skills" class="container py-10">
-
         <h2 class="section-title">
-
             <i class="fas fa-cogs"></i> Technical Skills
-
         </h2>
-
-
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
             <!-- Backend -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-server text-indigo-400"></i> Backend
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Python</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django REST Framework</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">FastAPI</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Pydantic</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">REST API Design</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">API Versioning</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Business Logic</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Database -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-database text-indigo-400"></i> Database
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">PostgreSQL</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django ORM</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">SQL</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Database Design</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Query Optimization</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Indexing</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Data Modeling</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Data Normalization</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Authentication & Security -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-shield-alt text-indigo-400"></i> Authentication & Security
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">JWT Authentication</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Access/Refresh Tokens</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Token Rotation & Blacklisting</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">RBAC</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Role-Based Permissions</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Session Management</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Rate Limiting</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Caching & Background Processing -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-bolt text-indigo-400"></i> Caching & Background Processing
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Redis</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Celery</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Background Tasks</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Caching</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Testing & Performance -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-tachometer-alt text-indigo-400"></i> Testing & Performance
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Pytest</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Unit/Integration/API Testing</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Authentication & Permission Testing</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Locust</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Load Testing</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Performance Optimization</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- DevOps & Deployment -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-tools text-indigo-400"></i> DevOps & Deployment
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Docker</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Docker Compose</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Nginx</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Gunicorn</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">GitHub Actions</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Linux</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Automation & API Tools -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-robot text-indigo-400"></i> Automation & API Tools
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">n8n</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Swagger/OpenAPI</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Postman</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">REST API Integration</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">External API Synchronization</span>
-
                 </div>
-
             </div>
-
-
 
             <!-- Code Quality -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-
                     <i class="fas fa-code text-indigo-400"></i> Code Quality & Development
-
                 </h3>
-
                 <div class="flex flex-wrap gap-2">
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Git</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">GitHub</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Black</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Flake8</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Code Review</span>
-
                     <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Refactoring</span>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- ============================================================ -->
-
     <!-- PROFESSIONAL EXPERIENCE                                      -->
-
     <!-- ============================================================ -->
-
     <section id="experience" class="container py-10">
-
         <h2 class="section-title">
-
             <i class="fas fa-briefcase"></i> Professional Experience
-
         </h2>
 
-
-
         <div class="space-y-6">
-
             <!-- Hootam -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-
                     <div>
-
                         <h3 class="text-xl md:text-2xl font-bold text-white">Hootam</h3>
-
                         <p class="text-indigo-400 font-medium mt-1">Backend Developer</p>
-
                     </div>
-
-
-
+                    <span class="text-sm text-gray-400 bg-gray-800/50 px-3 py-1 rounded-full w-fit">2024 – Present</span>
                 </div>
-
                 <p class="text-gray-300 mb-4 italic">Developed backend services for a Smart HR platform used by enterprise organizations.</p>
-
                 <ul class="exp-list space-y-2">
-
                     <li>Designed and developed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1) for maintainability and future scalability.</li>
-
                     <li>Implemented JWT authentication, RBAC, and role-based permissions, defining and testing access boundaries for HR staff, managers, and other organizational roles.</li>
-
                     <li>Used Redis for caching to reduce unnecessary database queries and improve API response performance.</li>
-
                     <li>Implemented Celery background tasks for time-consuming operations such as email and notification processing, keeping API responses responsive.</li>
-
                     <li>Developed core HR workflows including professional, ethical, and cultural assessments, satisfaction services, task assignment, and integration/synchronization with external HR services.</li>
-
                     <li>Wrote automated tests covering authentication, authorization, permissions, API behavior, and HTTP status codes, ensuring reliable and predictable backend behavior.</li>
-
                 </ul>
-
             </div>
-
-
 
             <!-- Paksaaz Shimi -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-
                     <div>
-
                         <h3 class="text-xl md:text-2xl font-bold text-white">Paksaaz Shimi</h3>
-
                         <p class="text-indigo-400 font-medium mt-1">Backend Developer</p>
-
                     </div>
-
-
-
+                    <span class="text-sm text-gray-400 bg-gray-800/50 px-3 py-1 rounded-full w-fit">2023 – 2024</span>
                 </div>
-
                 <p class="text-gray-300 mb-4 italic">Developed and maintained backend services for a product management platform handling diverse product data.</p>
-
                 <ul class="exp-list space-y-2">
-
                     <li>Designed and maintained product data models for approximately 250 products with variations in size, color, material, and category.</li>
-
                     <li>Used PostgreSQL indexing and optimized ORM queries to improve data retrieval and support efficient bulk updates across product records.</li>
-
                     <li>Implemented product alias and synonym handling to support different names referring to the same product or concept, improving data consistency and searchability.</li>
-
                     <li>Refactored database and backend components as requirements evolved, maintaining flexibility as the development team and project scope expanded.</li>
-
                     <li>Collaborated with the development team to implement frequent database and business-logic changes based on evolving client and management requirements.</li>
-
                 </ul>
-
             </div>
-
-
 
             <!-- Hooshbina -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-
                     <div>
-
                         <h3 class="text-xl md:text-2xl font-bold text-white">Hooshbina</h3>
-
                         <p class="text-indigo-400 font-medium mt-1">Lead Backend Developer</p>
-
                     </div>
-
-
-
+                    <span class="text-sm text-gray-400 bg-gray-800/50 px-3 py-1 rounded-full w-fit">2022 – 2023</span>
                 </div>
-
                 <p class="text-gray-300 mb-4 italic">Led backend development for AI-powered education and real-estate platforms.</p>
-
                 <ul class="exp-list space-y-2">
-
                     <li>Led the backend development team and designed core backend services for an AI-powered online education platform, supporting students, instructors, and support managers.</li>
-
                     <li>Implemented role-based permissions and workflows for course and instructor selection, support ticketing, profile completion, and instructor role transitions.</li>
-
                     <li>Developed and tested authorization rules and business logic to ensure each user role had appropriate access to platform resources and actions.</li>
-
                     <li>Developed backend services for an AI-powered real-estate web platform, including property registration, management, and intelligent property analysis.</li>
-
                     <li>Integrated AI-based image and map analysis to extract approximate property information such as area, dimensions, and map characteristics from owner-submitted images.</li>
-
                     <li>Implemented backend support for Persian voice-based property search, allowing users to search real-estate listings using natural spoken queries.</li>
-
                 </ul>
-
             </div>
-
-
 
             <!-- Memari Salaar -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-
                     <div>
-
                         <h3 class="text-xl md:text-2xl font-bold text-white">Memari Salaar</h3>
-
                         <p class="text-indigo-400 font-medium mt-1">Technical Consultant & API/Database Team Lead</p>
-
                     </div>
-
-
-
+                    <span class="text-sm text-gray-400 bg-gray-800/50 px-3 py-1 rounded-full w-fit">2021 – 2022</span>
                 </div>
-
                 <p class="text-gray-300 mb-4 italic">Developed backend, database, automation, and intelligent search solutions for a B2B construction and industrial products platform.</p>
-
                 <ul class="exp-list space-y-2">
-
                     <li>Developed n8n automation workflows and messaging bots across Bale and Rubika, enabling automated product search and communication between the business and its customers.</li>
-
                     <li>Designed and maintained a PostgreSQL product database containing 10,000+ products with inconsistent naming, multiple brands, languages, commercial terminology, and varied measurement formats.</li>
-
                     <li>Improved product search and data consistency through database indexing, unique constraints, data normalization, and standardized product attributes such as size, brand, category, and title.</li>
-
                     <li>Designed a JSON-based product metadata structure to extract and normalize key attributes from product data, enabling more accurate and structured search.</li>
-
                     <li>Implemented search preprocessing to normalize user queries and extract product characteristics such as size and product terminology, including conversion between commercial, metric, and inch-based measurements.</li>
-
                     <li>Built automated product price processing workflows that identified new products for insertion and updated existing products and their indexed data while preserving product records.</li>
-
                     <li>Developed data structures and reporting workflows for monitoring user activity and business KPIs, supporting operational analysis and decision-making.</li>
-
                 </ul>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- ============================================================ -->
-
     <!-- FEATURED PROJECTS                                            -->
-
     <!-- ============================================================ -->
-
     <section id="projects" class="container py-10">
-
         <h2 class="section-title">
-
             <i class="fas fa-code text-pink-400"></i> Featured Projects
-
         </h2>
 
-
-
         <div class="space-y-6">
-
             <!-- Project 1 -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row gap-6">
-
                     <div class="md:w-2/5">
-
                         <div class="swiper fastapi-swiper">
-
                             <div class="swiper-wrapper">
-
-                                <div class="swiper-slide"><a href="assets/images/fastapi-auth.png" class="glightbox"><img src="assets/images/fastapi-1.png" alt="FastAPI Auth 1" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/02-register.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/03-login.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2" loading="lazy"></a></div>
-
+                                <div class="swiper-slide">
+                                    <a href="assets/images/fastapi-auth.png" class="glightbox" data-gallery="project1">
+                                        <img src="assets/images/fastapi-auth.png" alt="FastAPI Auth 1" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/02-register.png" class="glightbox" data-gallery="project1">
+                                        <img src="assets/images/02-register.png" alt="FastAPI Auth 2" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/03-login.png" class="glightbox" data-gallery="project1">
+                                        <img src="assets/images/03-login.png" alt="FastAPI Auth 3" loading="lazy">
+                                    </a>
+                                </div>
                             </div>
-
                             <div class="swiper-pagination"></div>
-
                             <div class="swiper-button-next"></div>
-
                             <div class="swiper-button-prev"></div>
-
                         </div>
-
                     </div>
-
                     <div class="md:w-3/5">
-
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-2"><i class="fas fa-shield-alt text-indigo-400 mr-2"></i> FastAPI Authentication</h3>
-
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">A secure and production-oriented FastAPI authentication system with JWT, RBAC, session management, HttpOnly cookies, token rotation, and device fingerprinting. <strong class="text-indigo-300">106 tests passing.</strong></p>
-
                         <div class="flex flex-wrap gap-2 mb-4">
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">FastAPI</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">Pydantic</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">SQLAlchemy</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
-
                         </div>
-
                         <a href="https://github.com/moeinrezai/FastAPI-Authentication" target="_blank" class="inline-block text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-
                             <i class="fab fa-github"></i> View Repo
-
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
-
-
 
             <!-- Project 2 -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row gap-6">
-
                     <div class="md:w-2/5">
-
                         <div class="swiper drf-swiper">
-
                             <div class="swiper-wrapper">
-
-                                <div class="swiper-slide"><a href="assets/images/1.png" class="glightbox"><img src="assets/images/drf-1.png" alt="DRF JWT 1" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/2.png" class="glightbox"><img src="assets/images/drf-2.png" alt="DRF JWT 2" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/3.png" class="glightbox"><img src="assets/images/drf-2.png" alt="DRF JWT 2" loading="lazy"></a></div>
-
+                                <div class="swiper-slide">
+                                    <a href="assets/images/1.png" class="glightbox" data-gallery="project2">
+                                        <img src="assets/images/1.png" alt="DRF JWT 1" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/2.png" class="glightbox" data-gallery="project2">
+                                        <img src="assets/images/2.png" alt="DRF JWT 2" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/3.png" class="glightbox" data-gallery="project2">
+                                        <img src="assets/images/3.png" alt="DRF JWT 3" loading="lazy">
+                                    </a>
+                                </div>
                             </div>
-
                             <div class="swiper-pagination"></div>
-
                             <div class="swiper-button-next"></div>
-
                             <div class="swiper-button-prev"></div>
-
                         </div>
-
                     </div>
-
                     <div class="md:w-3/5">
-
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-2"><i class="fas fa-key text-yellow-400 mr-2"></i> DRF Authentication JWT</h3>
-
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">Modular, scalable JWT authentication system built with Django REST Framework. Includes user registration, login, token refresh, blacklist, and customizable permission logic. Designed for production-ready SaaS backends with atomic operations and clean API boundaries.</p>
-
                         <div class="flex flex-wrap gap-2 mb-4">
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">JWT</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
-
                         </div>
-
                         <a href="https://github.com/moeinrezai/drf-authentication-jwt" target="_blank" class="inline-block text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-
                             <i class="fab fa-github"></i> View Repo
-
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
-
-
 
             <!-- Project 3 -->
-
             <div class="glass p-6 md:p-8 rounded-2xl border border-gray-800 glass-hover">
-
                 <div class="flex flex-col md:flex-row gap-6">
-
                     <div class="md:w-2/5">
-
                         <div class="swiper secure-swiper">
-
                             <div class="swiper-wrapper">
-
-                                <div class="swiper-slide"><a href="assets/images/01_otp_request.png" class="glightbox"><img src="assets/images/secure-1.png" alt="Secure Auth 1" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/02_otp_verify.png" class="glightbox"><img src="assets/images/secure-2.png" alt="Secure Auth 2" loading="lazy"></a></div>
-
-                                <div class="swiper-slide"><a href="assets/images/03_token_refresh.png" class="glightbox"><img src="assets/images/secure-3.png" alt="Secure Auth 3" loading="lazy"></a></div>
-
+                                <div class="swiper-slide">
+                                    <a href="assets/images/01_otp_request.png" class="glightbox" data-gallery="project3">
+                                        <img src="assets/images/01_otp_request.png" alt="Secure Auth 1" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/02_otp_verify.png" class="glightbox" data-gallery="project3">
+                                        <img src="assets/images/02_otp_verify.png" alt="Secure Auth 2" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="assets/images/03_token_refresh.png" class="glightbox" data-gallery="project3">
+                                        <img src="assets/images/03_token_refresh.png" alt="Secure Auth 3" loading="lazy">
+                                    </a>
+                                </div>
                             </div>
-
                             <div class="swiper-pagination"></div>
-
                             <div class="swiper-button-next"></div>
-
                             <div class="swiper-button-prev"></div>
-
                         </div>
-
                     </div>
-
                     <div class="md:w-3/5">
-
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-2"><i class="fas fa-lock text-green-400 mr-2"></i> Django Secure Auth</h3>
-
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">A security-focused Django REST Framework authentication platform featuring JWT access/refresh tokens, refresh token rotation and reuse detection, Iranian phone OTP authentication, Redis-based rate limiting, session tracking, RBAC, audit logging, and device/IP tracking.</p>
-
                         <div class="flex flex-wrap gap-2 mb-4">
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">Redis</span>
-
                             <span class="skill-tag px-3 py-1 rounded-full text-xs">OTP</span>
-
                         </div>
-
                         <a href="https://github.com/moeinrezai/django-secure-auth" target="_blank" class="inline-block text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-
                             <i class="fab fa-github"></i> View Repo
-
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- ============================================================ -->
-
     <!-- LANGUAGES & SOFT SKILLS                                      -->
-
     <!-- ============================================================ -->
-
     <section id="languages" class="container py-10">
-
         <div class="grid md:grid-cols-2 gap-6">
-
             <!-- Languages -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-xl font-bold text-white mb-5 flex items-center gap-3">
-
                     <i class="fas fa-language text-indigo-400"></i> Languages
-
                 </h3>
-
                 <ul class="space-y-4 text-gray-300">
-
                     <li class="flex items-start gap-3">
-
                         <span class="inline-block w-2 h-2 bg-indigo-400 rounded-full mt-2"></span>
-
                         <div>
-
                             <span class="font-semibold text-white">Persian</span>
-
                             <span class="text-gray-400 block text-sm">Native</span>
-
                         </div>
-
                     </li>
-
                     <li class="flex items-start gap-3">
-
                         <span class="inline-block w-2 h-2 bg-indigo-400 rounded-full mt-2"></span>
-
                         <div>
-
                             <span class="font-semibold text-white">English</span>
-
                             <span class="text-gray-400 block text-sm">Advanced reading/writing, Intermediate listening, Basic speaking (actively improving)</span>
-
                         </div>
-
                     </li>
-
                 </ul>
-
             </div>
-
-
 
             <!-- Soft Skills -->
-
             <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-
                 <h3 class="text-xl font-bold text-white mb-5 flex items-center gap-3">
-
                     <i class="fas fa-user-check text-indigo-400"></i> Soft Skills
-
                 </h3>
-
                 <div class="flex flex-wrap gap-3">
-
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Problem Solving</span>
-
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Technical Leadership</span>
-
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Clean Code Advocate</span>
-
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Collaborative Debugging</span>
-
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Continuous Learner</span>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- ============================================================ -->
-
     <!-- FOOTER                                                       -->
-
     <!-- ============================================================ -->
-
     <footer class="container py-12 text-center text-gray-500 text-sm border-t border-gray-800 mt-10">
-
         <p class="mb-2">Built with <i class="fas fa-heart text-red-500"></i> by <strong class="text-white">Moein Rezaie</strong></p>
-
         <p class="text-xs">Always thinking about clean, sustainable, and scalable code.</p>
-
     </footer>
 
-
-
     <!-- ============================================================ -->
-
     <!-- SCRIPTS                                                      -->
-
     <!-- ============================================================ -->
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 
-
-
     <script>
-
         document.addEventListener('DOMContentLoaded', function() {
-
             // 1. Initialize Swipers
-
             const swiperConfig = {
-
                 slidesPerView: 1, spaceBetween: 10, loop: true,
-
                 pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
-
                 navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
-
             };
-
             ['.fastapi-swiper', '.drf-swiper', '.secure-swiper'].forEach(selector => {
-
                 const el = document.querySelector(selector);
-
                 if (el) new Swiper(el, swiperConfig);
-
             });
 
-
-
-            // 2. Initialize GLightbox
-
-            GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
-
-
+            // 2. Initialize GLightbox (Automatically respects data-gallery attributes)
+            GLightbox({ 
+                selector: '.glightbox', 
+                touchNavigation: true, 
+                loop: true 
+            });
 
             // 3. Typing Animation
-
             const typingElement = document.getElementById('typing-text');
-
             if (typingElement) {
-
                 const phrases = [
-
                     "Backend Developer", 
-
                     "Python Expert", 
-
                     "Django & FastAPI Specialist", 
-
                     "Clean Architecture Advocate"
-
                 ];
-
                 let phraseIndex = 0, charIndex = 0, isDeleting = false;
-
                 function typeEffect() {
-
                     const currentPhrase = phrases[phraseIndex];
-
                     if (isDeleting) {
-
                         typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-
                         charIndex--;
-
                     } else {
-
                         typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-
                         charIndex++;
-
                     }
-
                     let typeSpeed = isDeleting ? 40 : 80;
-
                     if (!isDeleting && charIndex === currentPhrase.length) { typeSpeed = 2000; isDeleting = true; } 
-
                     else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 500; }
-
                     setTimeout(typeEffect, typeSpeed);
-
                 }
-
                 typeEffect();
-
             }
 
-
-
             // 4. Fetch REAL GitHub Stars
-
             fetch('https://api.github.com/users/moeinrezai/repos')
-
                 .then(res => res.json())
-
                 .then(data => {
-
                     if (Array.isArray(data)) {
-
                         const totalStars = data.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-
                         const starsElement = document.getElementById('totalStars');
-
                         if (starsElement) {
-
                             starsElement.textContent = totalStars > 999 ? (totalStars / 1000).toFixed(1) + 'k' : totalStars;
-
                         }
-
                     }
-
                 })
-
                 .catch(err => {
-
                     console.error('Failed to fetch GitHub stars:', err);
-
                     const starsElement = document.getElementById('totalStars');
-
                     if (starsElement) starsElement.textContent = 'N/A';
-
                 });
-
-
 
             // 5. Scroll to Top Button Logic
-
             const scrollToTopBtn = document.getElementById('scrollToTop');
-
             window.addEventListener('scroll', () => {
-
                 if (window.scrollY > 300) {
-
                     scrollToTopBtn.classList.add('visible');
-
                 } else {
-
                     scrollToTopBtn.classList.remove('visible');
-
                 }
-
             });
-
             scrollToTopBtn.addEventListener('click', () => {
-
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-
             });
-
-
 
             // 6. Active Navigation Dots
-
             const navDots = document.querySelectorAll('.nav-dot a');
-
             const sections = ['home', 'skills', 'experience', 'projects', 'languages'];
-
             window.addEventListener('scroll', () => {
-
                 let current = '';
-
                 sections.forEach(id => {
-
                     const section = document.getElementById(id);
-
                     if (section) {
-
                         const sectionTop = section.offsetTop - 100;
-
                         if (window.scrollY >= sectionTop) {
-
                             current = id;
-
                         }
-
                     }
-
                 });
-
                 navDots.forEach(dot => {
-
                     dot.classList.remove('active');
-
                     if (dot.getAttribute('href') === '#' + current) {
-
                         dot.classList.add('active');
-
                     }
-
                 });
-
             });
-
         });
-
     </script>
-
 </body>
-
 </html>
