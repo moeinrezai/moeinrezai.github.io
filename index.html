@@ -20,27 +20,51 @@
     <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         /* ====== RESET & BASE ====== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0b0e14;
             color: #d1d5db;
-            transition: background 0.3s;
             overflow-x: hidden;
+            position: relative;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        
+        /* Subtle Animated Background Glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
         }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
         /* ====== GLASS EFFECT ====== */
         .glass {
@@ -50,13 +74,14 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .glass-hover:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 8px 30px -8px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 30px -8px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
         }
 
         /* ====== SKILL TAGS ====== */
         .skill-tag {
-            background: rgba(99, 102, 241, 0.12);
+            background: rgba(99, 102, 241, 0.1);
             border: 1px solid rgba(99, 102, 241, 0.2);
             transition: all 0.25s ease;
             cursor: default;
@@ -65,89 +90,30 @@
         }
         .skill-tag:hover {
             background: rgba(99, 102, 241, 0.25);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             border-color: #818cf8;
             box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
         }
 
-        /* ====== SWIPER CUSTOM ====== */
-        .swiper {
-            width: 100%;
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        .swiper-slide img:hover {
-            transform: scale(1.02);
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #818cf8 !important;
-            background: rgba(0, 0, 0, 0.5);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            backdrop-filter: blur(4px);
-        }
-        .swiper-button-next::after,
-        .swiper-button-prev::after {
-            font-size: 1.2rem !important;
-            font-weight: 700;
-        }
-        .swiper-pagination-bullet {
-            background: #818cf8 !important;
-            opacity: 0.6;
-        }
-        .swiper-pagination-bullet-active {
-            opacity: 1;
-            background: #818cf8 !important;
-        }
-
-        /* ====== GLIGHTBOX OVERRIDE ====== */
-        .glightbox-clean .gclose,
-        .glightbox-clean .gnext,
-        .glightbox-clean .gprev {
-            background: rgba(0, 0, 0, 0.6) !important;
-            border-radius: 50% !important;
-            width: 44px !important;
-            height: 44px !important;
-        }
-        .glightbox-clean .gclose:hover,
-        .glightbox-clean .gnext:hover,
-        .glightbox-clean .gprev:hover {
-            background: rgba(99, 102, 241, 0.8) !important;
-        }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width: 768px) {
-            .swiper-slide img {
-                height: 160px;
-            }
-        }
-
-        /* ====== PROFILE IMAGE FIX ====== */
+        /* ====== PROFILE IMAGE ====== */
         .profile-img {
-            width: 160px;
-            height: 160px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             object-position: top center;
-            border-radius: 1.5rem;
-            border: 2px solid rgba(99, 102, 241, 0.4);
-            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.25);
+            border-radius: 2rem;
+            border: 3px solid rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.3);
             flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .profile-img:hover {
+            transform: scale(1.05) translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.8);
+            box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.45);
         }
         @media (min-width: 768px) {
-            .profile-img {
-                width: 180px;
-                height: 180px;
-            }
+            .profile-img { width: 260px; height: 260px; }
         }
 
         /* ====== BADGE STYLING ====== */
@@ -158,72 +124,100 @@
             background: rgba(255,255,255,0.05);
             padding: 0.4rem 0.9rem;
             border-radius: 9999px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: #d1d5db;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
         }
-        .badge i {
-            color: #818cf8;
+
+        /* ====== SWIPER & GLIGHTBOX ====== */
+        .swiper { width: 100%; border-radius: 1rem; overflow: hidden; }
+        .swiper-slide img {
+            width: 100%; height: 220px; object-fit: cover; border-radius: 0.75rem;
+            transition: transform 0.3s; cursor: pointer;
         }
+        .swiper-slide img:hover { transform: scale(1.02); }
+        .swiper-button-next, .swiper-button-prev {
+            color: #818cf8 !important; background: rgba(0, 0, 0, 0.5);
+            width: 36px; height: 36px; border-radius: 50%; backdrop-filter: blur(4px);
+        }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.2rem !important; font-weight: 700; }
+        .swiper-pagination-bullet { background: #818cf8 !important; opacity: 0.6; }
+        .swiper-pagination-bullet-active { opacity: 1; background: #818cf8 !important; }
+        
+        @media (max-width: 768px) { .swiper-slide img { height: 160px; } }
+
+        /* ====== SCROLL TO TOP ====== */
+        #scrollToTop {
+            opacity: 0; pointer-events: none; transition: all 0.3s ease;
+        }
+        #scrollToTop.visible { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 z-50 flex items-center justify-center text-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- ============================================================ -->
     <!-- HEADER / PROFILE                                             -->
     <!-- ============================================================ -->
-    <header class="container py-8 md:py-12">
-        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
-
-            <!-- Avatar - Left Side -->
-            <div class="flex-shrink-0 flex flex-col items-center gap-3">
-                <img src="assets/images/my-pic.png"
-                     alt="Moein Rezaie"
-                     class="profile-img">
-                <!-- Badges: Stars & Views -->
-                <div class="flex flex-wrap justify-center gap-2 mt-1">
+    <header class="container py-12 md:py-20">
+        <!-- flex-row-reverse makes avatar appear on RIGHT and text on LEFT in desktop -->
+        <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-8 md:gap-12">
+            
+            <!-- Avatar - Right Side on Desktop, Top on Mobile -->
+            <div class="flex-shrink-0 flex flex-col items-center gap-4">
+                <img src="assets/images/my-pic.png" alt="Moein Rezaie" class="profile-img">
+                
+                <!-- REAL GitHub Stats -->
+                <div class="flex flex-wrap justify-center gap-3 mt-2">
                     <span class="badge">
-                        <i class="fas fa-star"></i> <span id="totalStars">1.2k</span>
+                        <i class="fas fa-star text-yellow-400"></i> 
+                        <span id="totalStars" class="ml-1"><i class="fas fa-spinner fa-spin"></i></span> Total Stars
                     </span>
-                    <span class="badge">
-                        <i class="fas fa-eye"></i> <span id="profileViews">4.8k</span>
-                    </span>
+                    <!-- Real Profile Views via Komarev (Standard GitHub Badge) -->
+                    <img src="https://komarev.com/ghpvc/?username=moeinrezai&color=6366f1&style=flat-square" 
+                         alt="Profile Views" class="h-7 rounded-md" title="Real GitHub Profile Views">
                 </div>
             </div>
 
-            <!-- Info - Right Side -->
-            <div class="flex-1 text-center md:text-right">
-                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Moein Rezaie</h1>
-                <p class="text-lg md:text-xl text-indigo-400 font-medium mt-1">Backend Developer · Python · Django · FastAPI</p>
+            <!-- Info - Left Side on Desktop, Bottom on Mobile -->
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight">Moein Rezaie</h1>
+                
+                <!-- Typing Animation -->
+                <p class="text-xl md:text-2xl text-indigo-400 font-medium mt-3 h-8">
+                    <span id="typing-text"></span><span class="animate-pulse text-indigo-300">|</span>
+                </p>
 
-                <!-- Summary -->
-                <div class="mt-4 text-gray-300 leading-relaxed max-w-3xl">
+                <div class="mt-6 text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0 text-base md:text-lg">
                     <p>
-                        Python Backend Developer with hands-on experience building backend systems.
-                        Focused on developing software with clean structure, security, maintainability,
-                        and scalability, while continuously learning and keeping my technical knowledge up to date.
-                        <br><br>
-                        I may not always have complete knowledge or an immediate answer to every problem,
-                        but when I encounter a knowledge gap or weakness, I take responsibility, learn what is needed,
-                        and work to improve both myself and the final solution. I consider accountability, quality,
-                        and continuous growth essential parts of being a professional software engineer.
+                        Python Backend Developer focused on clean architecture, security, maintainability, and scalability. 
+                        I take ownership of knowledge gaps, continuously learn, and strive to improve both myself and the final solution. 
+                        Accountability and continuous growth are essential parts of my engineering philosophy.
                     </p>
                 </div>
 
-                <!-- Social Links -->
-                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-5">
-                    <a href="https://github.com/moeinrezai" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-github"></i> GitHub
+                <!-- Social & Action Links -->
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-8">
+                    <a href="https://github.com/moeinrezai" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
+                        <i class="fab fa-github text-lg"></i> GitHub
                     </a>
-                    <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
+                        <i class="fab fa-linkedin-in text-lg"></i> LinkedIn
                     </a>
-                    <a href="mailto:moeinrezaie516@gmail.com" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fas fa-envelope"></i> Email
+                    <a href="mailto:moeinrezaie516@gmail.com" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
+                        <i class="fas fa-envelope text-lg"></i> Email
                     </a>
-                    <a href="https://t.me/moein9401" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-telegram-plane"></i> Telegram
+                    <a href="https://t.me/moein9401" target="_blank" class="glass px-5 py-2.5 rounded-xl text-sm font-medium hover:text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition flex items-center gap-2">
+                        <i class="fab fa-telegram-plane text-lg"></i> Telegram
+                    </a>
+                    <!-- New: Download CV -->
+                    <a href="assets/cv.pdf" download class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition flex items-center gap-2 shadow-lg shadow-indigo-500/25">
+                        <i class="fas fa-download"></i> Download CV
                     </a>
                 </div>
             </div>
@@ -231,207 +225,176 @@
     </header>
 
     <!-- ============================================================ -->
-    <!-- TECHNICAL SKILLS                                              -->
+    <!-- TECHNICAL SKILLS (Categorized & Beautiful)                   -->
     <!-- ============================================================ -->
-    <section class="container py-6">
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+    <section class="container py-10">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
             <i class="fas fa-cogs text-indigo-400"></i> Technical Skills
         </h2>
 
-        <div class="flex flex-wrap gap-2.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             <!-- Backend -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Python</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django REST Framework</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">FastAPI</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Pydantic</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">REST API Design</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">API Versioning</span>
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-server text-indigo-400"></i> Backend & API
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Python</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django REST Framework</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">FastAPI</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Pydantic</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">REST API Design</span>
+                </div>
+            </div>
+
             <!-- Database -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django ORM</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">SQL</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Database Design</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Query Optimization</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Indexing</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Data Modeling</span>
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-database text-indigo-400"></i> Database & ORM
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">PostgreSQL</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Django ORM</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">SQL</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Query Optimization</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Indexing</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Data Modeling</span>
+                </div>
+            </div>
+
             <!-- Security -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">JWT Authentication</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Token Rotation &amp; Blacklisting</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">RBAC</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Session Management</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Rate Limiting</span>
-            <!-- Caching & Async -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Redis</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Celery</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Background Tasks</span>
-            <!-- Testing -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Pytest</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Unit/Integration/API Testing</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Locust</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Load Testing</span>
-            <!-- DevOps -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker Compose</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Nginx</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Gunicorn</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">GitHub Actions</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Linux</span>
-            <!-- Automation & Tools -->
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">n8n</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Swagger/OpenAPI</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Postman</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Git</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Black</span>
-            <span class="skill-tag px-4 py-2 rounded-full text-sm">Flake8</span>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- PROFESSIONAL EXPERIENCE (بدون اسلایدر)                      -->
-    <!-- ============================================================ -->
-    <section class="container py-8">
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <i class="fas fa-briefcase text-indigo-400"></i> Professional Experience
-        </h2>
-
-        <!-- ====== 1. HOOTAM ====== -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                <h3 class="text-xl font-bold text-white">
-                    Hootam
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span>
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-indigo-400"></i> Security & Auth
                 </h3>
-                <span class="text-sm text-gray-500">2024 – Present</span>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">JWT Authentication</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Token Blacklisting</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">RBAC</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Rate Limiting</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Session Management</span>
+                </div>
             </div>
-            <div class="text-gray-300 leading-relaxed space-y-2">
-                <p>Developed backend services for a Smart HR platform used by enterprise organizations.</p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
-                    <li>Designed and developed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1) for maintainability and scalability.</li>
-                    <li>Implemented JWT authentication, RBAC, and role‑based permissions, defining and testing access boundaries for HR staff, managers, and other roles.</li>
-                    <li>Used Redis caching to reduce unnecessary DB queries and improve API response performance.</li>
-                    <li>Implemented Celery background tasks for time‑consuming operations like email and notification processing, keeping API responses responsive.</li>
-                    <li>Developed core HR workflows including professional, ethical &amp; cultural assessments, satisfaction services, task assignment, and integration with external HR services.</li>
-                    <li>Wrote automated tests covering authentication, authorization, API behavior, and HTTP status codes.</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- ====== 2. PAKSAAZ SHIMI ====== -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                <h3 class="text-xl font-bold text-white">
-                    Paksaaz Shimi
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span>
+            <!-- DevOps & Tools -->
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-tools text-indigo-400"></i> DevOps & Tools
                 </h3>
-                <span class="text-sm text-gray-500">2023 – 2024</span>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Docker</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Docker Compose</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Nginx</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Gunicorn</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">GitHub Actions</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Linux</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Git</span>
+                </div>
             </div>
-            <div class="text-gray-300 leading-relaxed space-y-2">
-                <p>Developed and maintained backend services for a product management platform handling diverse product data.</p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
-                    <li>Designed and maintained product data models for approx. 250 products with variations in size, color, material, and category.</li>
-                    <li>Used PostgreSQL indexing and optimized ORM queries to improve data retrieval and support efficient bulk updates.</li>
-                    <li>Implemented product alias and synonym handling to improve data consistency and searchability.</li>
-                    <li>Refactored database and backend components as requirements evolved, maintaining flexibility as the development team and project scope expanded.</li>
-                    <li>Collaborated with the team to implement frequent database and business-logic changes based on evolving client and management requirements.</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- ====== 3. HOOSHBINA ====== -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                <h3 class="text-xl font-bold text-white">
-                    Hooshibina
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Lead Backend Developer</span>
+            <!-- Testing & Performance -->
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-tachometer-alt text-indigo-400"></i> Testing & Performance
                 </h3>
-                <span class="text-sm text-gray-500">2022 – 2023</span>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Pytest</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Unit/Integration Testing</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Locust</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Redis</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Celery</span>
+                </div>
             </div>
-            <div class="text-gray-300 leading-relaxed space-y-2">
-                <p>Led backend development for AI‑powered education and real‑estate platforms.</p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
-                    <li>Led the backend development team and designed core services for an AI‑powered online education platform, supporting students, instructors, and support managers.</li>
-                    <li>Implemented role‑based permissions and workflows for course and instructor selection, support ticketing, profile completion, and instructor role transitions.</li>
-                    <li>Developed and tested authorization rules and business logic to ensure each user role had appropriate access.</li>
-                    <li>Developed backend services for an AI‑powered real‑estate web platform, including property registration, management, and intelligent property analysis.</li>
-                    <li>Integrated AI‑based image and map analysis to extract approximate property info (area, dimensions, map characteristics) from owner‑submitted images.</li>
-                    <li>Implemented backend support for Persian voice‑based property search, allowing users to search listings using natural spoken queries.</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- ====== 4. MEMARI SALAAR ====== -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                <h3 class="text-xl font-bold text-white">
-                    Memari Salaar
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Technical Consultant &amp; API/Database Team Lead</span>
+            <!-- Automation & Other -->
+            <div class="glass p-5 rounded-2xl border border-gray-800 glass-hover transition-all duration-300">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-robot text-indigo-400"></i> Automation & Other
                 </h3>
-                <span class="text-sm text-gray-500">2021 – 2022</span>
-            </div>
-            <div class="text-gray-300 leading-relaxed space-y-2">
-                <p>Developed backend, database, automation, and intelligent search solutions for a B2B construction &amp; industrial products platform.</p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
-                    <li>Developed n8n automation workflows and messaging bots across Bale and Rubika, enabling automated product search and customer communication.</li>
-                    <li>Designed and maintained a PostgreSQL product database containing 10,000+ products with inconsistent naming, multiple brands, languages, and varied measurement formats.</li>
-                    <li>Improved product search and data consistency through database indexing, unique constraints, data normalization, and standardized attributes (size, brand, category, title).</li>
-                    <li>Designed a JSON‑based product metadata structure to extract and normalize key attributes, enabling more accurate and structured search.</li>
-                    <li>Implemented search preprocessing to normalize user queries and extract product characteristics such as size, with conversion between commercial, metric, and inch‑based measurements.</li>
-                    <li>Built automated product price processing workflows that identified new products for insertion and updated existing products while preserving records.</li>
-                    <li>Developed data structures and reporting workflows for monitoring user activity and business KPIs.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- LANGUAGES & SOFT SKILLS                                      -->
-    <!-- ============================================================ -->
-    <section class="container py-8">
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Languages -->
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                    <i class="fas fa-language text-indigo-400"></i> Languages
-                </h3>
-                <ul class="space-y-2 text-gray-300">
-                    <li><span class="font-semibold text-white">Persian</span> – Native</li>
-                    <li><span class="font-semibold text-white">English</span> – Advanced reading/writing, Intermediate listening, Basic speaking (actively improving)</li>
-                </ul>
-            </div>
-            <!-- Soft Skills -->
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                    <i class="fas fa-user-check text-indigo-400"></i> Soft Skills
-                </h3>
-                <div class="flex flex-wrap gap-3">
-                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Problem Solving</span>
-                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Technical Leadership</span>
-                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Clean Code Advocate</span>
-                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Collaborative Debugging</span>
-                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Continuous Learner</span>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">n8n</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Swagger/OpenAPI</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Postman</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Black</span>
+                    <span class="skill-tag px-3 py-1.5 rounded-lg text-sm">Flake8</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- FEATURED PROJECTS (با اسلایدر)                               -->
+    <!-- PROFESSIONAL EXPERIENCE                                      -->
     <!-- ============================================================ -->
-    <section class="container py-8">
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+    <section class="container py-10">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+            <i class="fas fa-briefcase text-indigo-400"></i> Professional Experience
+        </h2>
+
+        <!-- Experience items remain structurally the same but benefit from the global glass-hover improvements -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">Hootam <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span></h3>
+                <span class="text-sm text-gray-500">2024 – Present</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p>Developed backend services for a Smart HR platform used by enterprise organizations.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Designed and developed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1).</li>
+                    <li>Implemented JWT authentication, RBAC, and role‑based permissions.</li>
+                    <li>Used Redis caching to reduce unnecessary DB queries and improve API response performance.</li>
+                    <li>Implemented Celery background tasks for time‑consuming operations like email processing.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">Paksaaz Shimi <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span></h3>
+                <span class="text-sm text-gray-500">2023 – 2024</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p>Developed and maintained backend services for a product management platform.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Designed and maintained product data models for approx. 250 products with variations.</li>
+                    <li>Used PostgreSQL indexing and optimized ORM queries to improve data retrieval.</li>
+                    <li>Refactored database and backend components as requirements evolved.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">Hooshibina <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Lead Backend Developer</span></h3>
+                <span class="text-sm text-gray-500">2022 – 2023</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p>Led backend development for AI‑powered education and real‑estate platforms.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Led the backend development team and designed core services for an AI‑powered online education platform.</li>
+                    <li>Developed backend services for an AI‑powered real‑estate web platform, including intelligent property analysis.</li>
+                    <li>Implemented backend support for Persian voice‑based property search.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FEATURED PROJECTS                                            -->
+    <!-- ============================================================ -->
+    <section class="container py-10">
+        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
             <i class="fas fa-code text-pink-400"></i> Featured Projects
         </h2>
 
-        <!-- Project 1: FastAPI Authentication -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
+        <!-- Project 1 -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6 transition-all duration-300">
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-2/5">
                     <div class="swiper fastapi-swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><a href="assets/images/fastapi-1.png" class="glightbox"><img src="assets/images/fastapi-1.png" alt="FastAPI Auth 1" loading="lazy"></a></div>
                             <div class="swiper-slide"><a href="assets/images/fastapi-2.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2" loading="lazy"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/fastapi-3.png" class="glightbox"><img src="assets/images/fastapi-3.png" alt="FastAPI Auth 3" loading="lazy"></a></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
@@ -439,13 +402,8 @@
                     </div>
                 </div>
                 <div class="md:w-3/5">
-                    <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-shield-alt text-indigo-400 mr-2"></i>
-                        FastAPI Authentication
-                    </h3>
-                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        A secure and production-oriented FastAPI authentication system with JWT, RBAC, session management, HttpOnly cookies, token rotation, device fingerprinting, and security features. <strong>106 tests passing.</strong>
-                    </p>
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-shield-alt text-indigo-400 mr-2"></i> FastAPI Authentication</h3>
+                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">A secure and production-oriented FastAPI authentication system with JWT, RBAC, session management, HttpOnly cookies, token rotation, and device fingerprinting. <strong>106 tests passing.</strong></p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">FastAPI</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Pydantic</span>
@@ -459,8 +417,8 @@
             </div>
         </div>
 
-        <!-- Project 2: Drf-Authentication-JWT -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
+        <!-- Project 2 -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6 transition-all duration-300">
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-2/5">
                     <div class="swiper drf-swiper">
@@ -474,13 +432,8 @@
                     </div>
                 </div>
                 <div class="md:w-3/5">
-                    <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-key text-yellow-400 mr-2"></i>
-                        DRF Authentication JWT
-                    </h3>
-                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        Modular, scalable JWT authentication system built with Django REST Framework. Includes user registration, login, token refresh, blacklist, and customizable permission logic. Designed for production-ready SaaS backends with atomic operations and clean API boundaries.
-                    </p>
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-key text-yellow-400 mr-2"></i> DRF Authentication JWT</h3>
+                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">Modular, scalable JWT authentication system built with Django REST Framework. Includes user registration, login, token refresh, blacklist, and customizable permission logic.</p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
@@ -493,125 +446,91 @@
                 </div>
             </div>
         </div>
-
-        <!-- Project 3: Django-Secure-Auth -->
-        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-2/5">
-                    <div class="swiper secure-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="assets/images/secure-1.png" class="glightbox"><img src="assets/images/secure-1.png" alt="Secure Auth 1" loading="lazy"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/secure-2.png" class="glightbox"><img src="assets/images/secure-2.png" alt="Secure Auth 2" loading="lazy"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/secure-3.png" class="glightbox"><img src="assets/images/secure-3.png" alt="Secure Auth 3" loading="lazy"></a></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                </div>
-                <div class="md:w-3/5">
-                    <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-lock text-green-400 mr-2"></i>
-                        Django Secure Auth
-                    </h3>
-                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        A security-focused Django REST Framework authentication platform featuring JWT access/refresh tokens, refresh token rotation and reuse detection, Iranian phone OTP authentication, Redis-based rate limiting and hybrid state management, session tracking, RBAC, audit logging, device/IP tracking, and comprehensive security testing.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-3">
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Redis</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">OTP</span>
-                    </div>
-                    <a href="https://github.com/moeinrezai/django-secure-auth" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                        <i class="fab fa-github"></i> View Repo
-                    </a>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- ============================================================ -->
     <!-- FOOTER                                                       -->
     <!-- ============================================================ -->
-    <footer class="container py-10 text-center text-gray-600 text-sm border-t border-gray-800 mt-10">
+    <footer class="container py-12 text-center text-gray-600 text-sm border-t border-gray-800 mt-10">
         <p>Built with <i class="fas fa-heart text-red-500"></i> by Moein Rezaie</p>
-        <p class="mt-1 text-xs">Always thinking about clean, sustainable code.</p>
+        <p class="mt-1 text-xs">Always thinking about clean, sustainable, and scalable code.</p>
     </footer>
 
     <!-- ============================================================ -->
     <!-- SCRIPTS                                                      -->
     <!-- ============================================================ -->
-
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- GLightbox JS -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 
     <script>
-        // ============================================================
-        // INIT SWIPER SLIDERS (فقط برای بخش پروژه‌ها)
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
+            // 1. Initialize Swipers
             const swiperConfig = {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    dynamicBullets: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    640: { slidesPerView: 1, spaceBetween: 10 },
-                    768: { slidesPerView: 1, spaceBetween: 15 },
-                }
+                slidesPerView: 1, spaceBetween: 10, loop: true,
+                pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
             };
-
-            // فقط اسلایدرهای پروژه‌ها
-            const projectSliders = [
-                '.fastapi-swiper',
-                '.drf-swiper',
-                '.secure-swiper'
-            ];
-
-            projectSliders.forEach(selector => {
+            ['.fastapi-swiper', '.drf-swiper', '.secure-swiper'].forEach(selector => {
                 const el = document.querySelector(selector);
-                if (el) {
-                    new Swiper(el, swiperConfig);
-                }
+                if (el) new Swiper(el, swiperConfig);
             });
 
-            // ============================================================
-            // GLIGHTBOX (بزرگنمایی تصاویر)
-            // ============================================================
-            GLightbox({
-                selector: '.glightbox',
-                touchNavigation: true,
-                loop: true,
-                autoplayVideos: false,
+            // 2. Initialize GLightbox
+            GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+
+            // 3. Typing Animation
+            const typingElement = document.getElementById('typing-text');
+            if (typingElement) {
+                const phrases = ["Backend Developer", "Python Expert", "Django & FastAPI Specialist", "Clean Code Advocate"];
+                let phraseIndex = 0, charIndex = 0, isDeleting = false;
+                function typeEffect() {
+                    const currentPhrase = phrases[phraseIndex];
+                    if (isDeleting) {
+                        typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                        charIndex++;
+                    }
+                    let typeSpeed = isDeleting ? 40 : 80;
+                    if (!isDeleting && charIndex === currentPhrase.length) { typeSpeed = 2000; isDeleting = true; } 
+                    else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 500; }
+                    setTimeout(typeEffect, typeSpeed);
+                }
+                typeEffect();
+            }
+
+            // 4. Fetch REAL GitHub Stars
+            fetch('https://api.github.com/users/moeinrezai/repos')
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        const totalStars = data.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+                        const starsElement = document.getElementById('totalStars');
+                        if (starsElement) {
+                            starsElement.textContent = totalStars > 999 ? (totalStars / 1000).toFixed(1) + 'k' : totalStars;
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error('Failed to fetch GitHub stars:', err);
+                    const starsElement = document.getElementById('totalStars');
+                    if (starsElement) starsElement.textContent = 'N/A';
+                });
+
+            // 5. Scroll to Top Button Logic
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
-
-        // ============================================================
-        // (اختیاری) دریافت تعداد واقعی ستاره‌ها و بازدید از GitHub API
-        // ============================================================
-        // برای دریافت تعداد ستاره‌ها می‌توانید از API گیت‌هاب استفاده کنید:
-        // fetch('https://api.github.com/users/moeinrezai/repos')
-        //   .then(res => res.json())
-        //   .then(data => {
-        //     const total = data.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-        //     document.getElementById('totalStars').textContent = total;
-        //   });
-        //
-        // برای بازدید، از سرویس‌های خارجی مانند komarev استفاده کنید یا به صورت دستی تنظیم کنید.
-        // در حال حاضر اعداد نمایشی هستند.
     </script>
-
 </body>
 </html>
