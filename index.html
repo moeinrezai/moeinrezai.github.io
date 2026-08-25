@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معین رضایی · Moein Rezaie · Backend Developer</title>
+    <title>Moein Rezaie · Backend Developer</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,20 +17,25 @@
     <!-- GLightbox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 
-    <!-- Vazirmatn Font (Persian) -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
-
     <style>
         /* ====== RESET & BASE ====== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0b0e14;
             color: #d1d5db;
             transition: background 0.3s;
             overflow-x: hidden;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
         /* ====== GLASS EFFECT ====== */
         .glass {
@@ -58,38 +63,6 @@
             box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
         }
 
-        /* ====== LANGUAGE TOGGLE ====== */
-        .lang-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #d1d5db;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .lang-btn:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: #818cf8;
-            color: #fff;
-        }
-        .lang-btn .active-lang {
-            color: #818cf8;
-        }
-
-        /* ====== HIDE/SHOW LANG ====== */
-        .lang-fa { display: block; }
-        .lang-en { display: none; }
-        body.lang-en .lang-fa { display: none; }
-        body.lang-en .lang-en { display: block; }
-        body.lang-fa .lang-fa { display: block; }
-        body.lang-fa .lang-en { display: none; }
-
         /* ====== SWIPER CUSTOM ====== */
         .swiper {
             width: 100%;
@@ -110,7 +83,7 @@
         .swiper-button-next,
         .swiper-button-prev {
             color: #818cf8 !important;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -131,10 +104,10 @@
         }
 
         /* ====== GLIGHTBOX OVERRIDE ====== */
-        .glightbox-clean .gclose, 
-        .glightbox-clean .gnext, 
+        .glightbox-clean .gclose,
+        .glightbox-clean .gnext,
         .glightbox-clean .gprev {
-            background: rgba(0,0,0,0.6) !important;
+            background: rgba(0, 0, 0, 0.6) !important;
             border-radius: 50% !important;
             width: 44px !important;
             height: 44px !important;
@@ -147,11 +120,13 @@
 
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
-            .swiper-slide img { height: 160px; }
+            .swiper-slide img {
+                height: 160px;
+            }
         }
     </style>
 </head>
-<body class="lang-fa">
+<body>
 
     <!-- ============================================================ -->
     <!-- HEADER / PROFILE                                             -->
@@ -166,37 +141,12 @@
 
             <!-- Info -->
             <div class="flex-1 text-center md:text-right">
-                <div class="flex flex-wrap items-center justify-center md:justify-between gap-4">
-                    <div>
-                        <h1 class="text-3xl md:text-5xl font-black text-white">
-                            <span class="lang-fa">معین رضایی</span>
-                            <span class="lang-en">Moein Rezaie</span>
-                        </h1>
-                        <p class="text-lg md:text-xl text-indigo-400 font-medium mt-1">
-                            <span class="lang-fa">توسعه‌دهنده بک‌اند · Python · Django · FastAPI</span>
-                            <span class="lang-en">Backend Developer · Python · Django · FastAPI</span>
-                        </p>
-                    </div>
-                    <!-- Language Toggle -->
-                    <button id="langToggle" class="lang-btn">
-                        <i class="fas fa-globe"></i>
-                        <span id="langLabel">فارسی</span>
-                    </button>
-                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-white">Moein Rezaie</h1>
+                <p class="text-lg md:text-xl text-indigo-400 font-medium mt-1">Backend Developer · Python · Django · FastAPI</p>
 
                 <!-- Summary -->
                 <div class="mt-4 text-gray-300 leading-relaxed max-w-3xl">
-                    <p class="lang-fa">
-                        توسعه‌دهنده بک‌اند پایتون با تجربه عملی در ساخت سیستم‌های پشتیبان.
-                        متمرکز بر توسعه نرم‌افزار با ساختار تمیز، امنیت، قابلیت نگهداری و مقیاس‌پذیری،
-                        همراه با یادگیری مداوم و به‌روز نگه‌داشتن دانش فنی.
-                        <br><br>
-                        ممکن است همیشه دانش کامل یا پاسخ فوری برای هر مشکلی نداشته باشم، اما وقتی با
-                        شکاف دانشی یا ضعفی مواجه می‌شوم، مسئولیت را می‌پذیرم، آنچه لازم است را یاد می‌گیرم
-                        و برای بهبود خودم و راه‌حل نهایی تلاش می‌کنم. پاسخگویی، کیفیت و رشد مستمر را
-                        بخش‌های اساسی یک مهندس نرم‌افزار حرفه‌ای می‌دانم.
-                    </p>
-                    <p class="lang-en">
+                    <p>
                         Python Backend Developer with hands-on experience building backend systems.
                         Focused on developing software with clean structure, security, maintainability,
                         and scalability, while continuously learning and keeping my technical knowledge up to date.
@@ -232,9 +182,7 @@
     <!-- ============================================================ -->
     <section class="container py-6">
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <i class="fas fa-cogs text-indigo-400"></i>
-            <span class="lang-fa">تخصص‌های فنی</span>
-            <span class="lang-en">Technical Skills</span>
+            <i class="fas fa-cogs text-indigo-400"></i> Technical Skills
         </h2>
 
         <div class="flex flex-wrap gap-2.5">
@@ -291,44 +239,27 @@
     <!-- ============================================================ -->
     <section class="container py-8">
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <i class="fas fa-briefcase text-indigo-400"></i>
-            <span class="lang-fa">تجربه حرفه‌ای</span>
-            <span class="lang-en">Professional Experience</span>
+            <i class="fas fa-briefcase text-indigo-400"></i> Professional Experience
         </h2>
 
         <!-- ====== 1. HOOTAM ====== -->
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
                 <h3 class="text-xl font-bold text-white">
-                    <span class="lang-fa">هوتام</span>
-                    <span class="lang-en">Hootam</span>
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
-                        <span class="lang-fa">توسعه‌دهنده بک‌اند</span>
-                        <span class="lang-en">Backend Developer</span>
-                    </span>
+                    Hootam
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span>
                 </h3>
                 <span class="text-sm text-gray-500">2024 – Present</span>
             </div>
             <div class="text-gray-300 leading-relaxed space-y-2">
-                <p class="lang-fa">
-                    توسعه سرویس‌های بک‌اند برای پلتفرم هوشمند منابع انسانی (HR) مورد استفاده سازمان‌های بزرگ.
-                </p>
-                <p class="lang-en">
-                    Developed backend services for a Smart HR platform used by enterprise organizations.
-                </p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
-                    <li class="lang-fa">طراحی و توسعه RESTful API با Django REST Framework با معماری نسخه‌بندی شده (api/v1) برای قابلیت نگهداری و مقیاس‌پذیری.</li>
-                    <li class="lang-en">Designed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1) for maintainability and scalability.</li>
-                    <li class="lang-fa">پیاده‌سازی احراز هویت JWT، RBAC و مجوزهای مبتنی بر نقش، با تعریف و تست مرزهای دسترسی برای کارکنان HR، مدیران و سایر نقش‌ها.</li>
-                    <li class="lang-en">Implemented JWT authentication, RBAC, and role-based permissions, defining and testing access boundaries for HR staff, managers, and other roles.</li>
-                    <li class="lang-fa">استفاده از Redis برای کش‌کردن و کاهش کوئری‌های غیرضروری دیتابیس و بهبود زمان پاسخ API.</li>
-                    <li class="lang-en">Used Redis caching to reduce unnecessary DB queries and improve API response performance.</li>
-                    <li class="lang-fa">پیاده‌سازی تسک‌های پس‌زمینه Celery برای عملیات زمان‌بر مانند پردازش ایمیل و نوتیفیکیشن‌ها.</li>
-                    <li class="lang-en">Implemented Celery background tasks for time‑consuming operations like email & notification processing.</li>
-                    <li class="lang-fa">توسعه گردش‌های کاری اصلی HR شامل ارزیابی‌های حرفه‌ای، اخلاقی و فرهنگی، سرویس‌های رضایت‌سنجی، تخصیص وظایف و یکپارچه‌سازی با سرویس‌های خارجی.</li>
-                    <li class="lang-en">Developed core HR workflows including professional, ethical & cultural assessments, satisfaction services, task assignment, and integration with external HR services.</li>
-                    <li class="lang-fa">نوشتن تست‌های خودکار برای احراز هویت، مجوزها، رفتار API و کدهای وضعیت HTTP.</li>
-                    <li class="lang-en">Wrote automated tests covering authentication, authorization, API behavior, and HTTP status codes.</li>
+                <p>Developed backend services for a Smart HR platform used by enterprise organizations.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Designed and developed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1) for maintainability and scalability.</li>
+                    <li>Implemented JWT authentication, RBAC, and role‑based permissions, defining and testing access boundaries for HR staff, managers, and other roles.</li>
+                    <li>Used Redis caching to reduce unnecessary DB queries and improve API response performance.</li>
+                    <li>Implemented Celery background tasks for time‑consuming operations like email and notification processing, keeping API responses responsive.</li>
+                    <li>Developed core HR workflows including professional, ethical &amp; cultural assessments, satisfaction services, task assignment, and integration with external HR services.</li>
+                    <li>Wrote automated tests covering authentication, authorization, API behavior, and HTTP status codes.</li>
                 </ul>
             </div>
             <!-- Slider for Hootam -->
@@ -350,31 +281,19 @@
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
                 <h3 class="text-xl font-bold text-white">
-                    <span class="lang-fa">پاکساز شیمی</span>
-                    <span class="lang-en">Paksaaz Shimi</span>
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
-                        <span class="lang-fa">توسعه‌دهنده بک‌اند</span>
-                        <span class="lang-en">Backend Developer</span>
-                    </span>
+                    Paksaaz Shimi
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Backend Developer</span>
                 </h3>
                 <span class="text-sm text-gray-500">2023 – 2024</span>
             </div>
             <div class="text-gray-300 leading-relaxed space-y-2">
-                <p class="lang-fa">
-                    توسعه و نگهداری سرویس‌های بک‌اند برای پلتفرم مدیریت محصولات با داده‌های متنوع.
-                </p>
-                <p class="lang-en">
-                    Developed and maintained backend services for a product management platform handling diverse product data.
-                </p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
-                    <li class="lang-fa">طراحی و نگهداری مدل‌های داده محصولات برای حدود ۲۵۰ محصول با متغیرهای اندازه، رنگ، جنس و دسته‌بندی.</li>
-                    <li class="lang-en">Designed & maintained product data models for approx. 250 products with variations in size, color, material, and category.</li>
-                    <li class="lang-fa">استفاده از ایندکس‌گذاری PostgreSQL و بهینه‌سازی کوئری‌های ORM برای بهبود بازیابی داده و پشتیبانی از به‌روزرسانی‌های حجیم.</li>
-                    <li class="lang-en">Used PostgreSQL indexing & optimized ORM queries to improve data retrieval and support bulk updates.</li>
-                    <li class="lang-fa">پیاده‌سازی مدیریت نام‌های مستعار و مترادف برای محصولات به منظور بهبود سازگاری داده‌ها و قابلیت جستجو.</li>
-                    <li class="lang-en">Implemented alias & synonym handling to improve data consistency and searchability.</li>
-                    <li class="lang-fa">بازنویسی (Refactor) دیتابیس و کامپوننت‌های بک‌اند با تغییر نیازمندی‌ها، حفظ انعطاف‌پذیری با گسترش تیم و پروژه.</li>
-                    <li class="lang-en">Refactored DB & backend components as requirements evolved, maintaining flexibility as the team grew.</li>
+                <p>Developed and maintained backend services for a product management platform handling diverse product data.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Designed and maintained product data models for approx. 250 products with variations in size, color, material, and category.</li>
+                    <li>Used PostgreSQL indexing and optimized ORM queries to improve data retrieval and support efficient bulk updates.</li>
+                    <li>Implemented product alias and synonym handling to improve data consistency and searchability.</li>
+                    <li>Refactored database and backend components as requirements evolved, maintaining flexibility as the development team and project scope expanded.</li>
+                    <li>Collaborated with the team to implement frequent database and business-logic changes based on evolving client and management requirements.</li>
                 </ul>
             </div>
             <!-- Slider for Paksaaz -->
@@ -395,33 +314,20 @@
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
                 <h3 class="text-xl font-bold text-white">
-                    <span class="lang-fa">هوش بینا</span>
-                    <span class="lang-en">Hooshibina</span>
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
-                        <span class="lang-fa">لید توسعه‌دهنده بک‌اند</span>
-                        <span class="lang-en">Lead Backend Developer</span>
-                    </span>
+                    Hooshibina
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Lead Backend Developer</span>
                 </h3>
                 <span class="text-sm text-gray-500">2022 – 2023</span>
             </div>
             <div class="text-gray-300 leading-relaxed space-y-2">
-                <p class="lang-fa">
-                    رهبری توسعه بک‌اند برای پلتفرم‌های آموزش آنلاین و املاک مبتنی بر هوش مصنوعی.
-                </p>
-                <p class="lang-en">
-                    Led backend development for AI-powered education and real-estate platforms.
-                </p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
-                    <li class="lang-fa">رهبری تیم توسعه بک‌اند و طراحی سرویس‌های اصلی برای پلتفرم آموزش آنلاین مبتنی بر هوش مصنوعی، پشتیبانی از دانشجویان، مربیان و مدیران پشتیبانی.</li>
-                    <li class="lang-en">Led the backend team & designed core services for an AI-powered online education platform, supporting students, instructors, and support managers.</li>
-                    <li class="lang-fa">پیاده‌سازی مجوزهای مبتنی بر نقش و گردش‌های کاری برای انتخاب دوره و مربی، تیکتینگ پشتیبانی، تکمیل پروفایل و انتقال نقش مربی.</li>
-                    <li class="lang-en">Implemented RBAC and workflows for course/instructor selection, support ticketing, profile completion, and instructor role transitions.</li>
-                    <li class="lang-fa">توسعه سرویس‌های بک‌اند برای پلتفرم وب املاک مبتنی بر هوش مصنوعی، شامل ثبت ملک، مدیریت و تحلیل هوشمند.</li>
-                    <li class="lang-en">Developed backend for an AI-powered real-estate web platform, including property registration, management, and intelligent analysis.</li>
-                    <li class="lang-fa">یکپارچه‌سازی تحلیل تصاویر و نقشه‌های مبتنی بر هوش مصنوعی برای استخراج اطلاعات تقریبی ملک مانند مساحت، ابعاد و ویژگی‌های نقشه از تصاویر ارسالی مالک.</li>
-                    <li class="lang-en">Integrated AI-based image & map analysis to extract approximate property info (area, dimensions, map characteristics) from owner-submitted images.</li>
-                    <li class="lang-fa">پیاده‌سازی پشتیبانی از جستجوی صوتی به فارسی برای املاک، امکان جستجوی طبیعی با گفتار.</li>
-                    <li class="lang-en">Implemented Persian voice-based property search, allowing users to search listings using natural spoken queries.</li>
+                <p>Led backend development for AI‑powered education and real‑estate platforms.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Led the backend development team and designed core services for an AI‑powered online education platform, supporting students, instructors, and support managers.</li>
+                    <li>Implemented role‑based permissions and workflows for course and instructor selection, support ticketing, profile completion, and instructor role transitions.</li>
+                    <li>Developed and tested authorization rules and business logic to ensure each user role had appropriate access.</li>
+                    <li>Developed backend services for an AI‑powered real‑estate web platform, including property registration, management, and intelligent property analysis.</li>
+                    <li>Integrated AI‑based image and map analysis to extract approximate property info (area, dimensions, map characteristics) from owner‑submitted images.</li>
+                    <li>Implemented backend support for Persian voice‑based property search, allowing users to search listings using natural spoken queries.</li>
                 </ul>
             </div>
             <!-- Slider for Hooshibina -->
@@ -443,37 +349,21 @@
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
                 <h3 class="text-xl font-bold text-white">
-                    <span class="lang-fa">معمار سالار</span>
-                    <span class="lang-en">Memari Salaar</span>
-                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
-                        <span class="lang-fa">مشاور فنی و لید تیم API/دیتابیس</span>
-                        <span class="lang-en">Technical Consultant &amp; API/Database Team Lead</span>
-                    </span>
+                    Memari Salaar
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:ml-3">Technical Consultant &amp; API/Database Team Lead</span>
                 </h3>
                 <span class="text-sm text-gray-500">2021 – 2022</span>
             </div>
             <div class="text-gray-300 leading-relaxed space-y-2">
-                <p class="lang-fa">
-                    توسعه راه‌حل‌های بک‌اند، دیتابیس، اتوماسیون و جستجوی هوشمند برای پلتفرم B2B محصولات ساختمانی و صنعتی.
-                </p>
-                <p class="lang-en">
-                    Developed backend, database, automation, and intelligent search solutions for a B2B construction & industrial products platform.
-                </p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
-                    <li class="lang-fa">توسعه گردش‌های کاری اتوماسیون با n8n و ربات‌های پیام‌رسان در بله و روبیکا، امکان جستجوی خودکار محصول و ارتباط با مشتریان.</li>
-                    <li class="lang-en">Developed n8n automation workflows & messaging bots across Bale and Rubika, enabling automated product search & customer communication.</li>
-                    <li class="lang-fa">طراحی و نگهداری دیتابیس PostgreSQL شامل ۱۰,۰۰۰+ محصول با نام‌های نامنظم، برندهای متعدد، زبان‌ها و فرمت‌های اندازه‌گیری متنوع.</li>
-                    <li class="lang-en">Designed & maintained a PostgreSQL product DB containing 10,000+ products with inconsistent naming, multiple brands, languages, and varied measurement formats.</li>
-                    <li class="lang-fa">بهبود جستجو و سازگاری داده‌ها از طریق ایندکس‌گذاری، محدودیت‌های یکتا، نرمال‌سازی و استانداردسازی ویژگی‌هایی مانند اندازه، برند، دسته و عنوان.</li>
-                    <li class="lang-en">Improved search & data consistency through indexing, unique constraints, normalization, and standardized attributes (size, brand, category, title).</li>
-                    <li class="lang-fa">طراحی ساختار متادیتای JSON برای استخراج و نرمال‌سازی ویژگی‌های کلیدی از داده‌های محصول، امکان جستجوی دقیق‌تر.</li>
-                    <li class="lang-en">Designed a JSON metadata structure to extract & normalize key attributes, enabling more accurate search.</li>
-                    <li class="lang-fa">پیاده‌سازی پیش‌پردازش جستجو برای نرمال‌سازی پرس‌وجوها و استخراج ویژگی‌هایی مانند اندازه، با تبدیل بین واحدهای تجاری، متریک و اینچ.</li>
-                    <li class="lang-en">Built search preprocessing to normalize queries and extract product characteristics (size, etc.) with unit conversion (commercial, metric, inch).</li>
-                    <li class="lang-fa">ساخت گردش‌های کاری خودکار برای پردازش قیمت محصولات، شناسایی محصولات جدید و به‌روزرسانی محصولات موجود.</li>
-                    <li class="lang-en">Built automated product price processing workflows that identified new products and updated existing ones while preserving records.</li>
-                    <li class="lang-fa">توسعه ساختار داده‌ها و گزارش‌دهی برای مانیتورینگ فعالیت کاربران و KPIهای کسب‌وکار.</li>
-                    <li class="lang-en">Developed data structures & reporting workflows for monitoring user activity and business KPIs.</li>
+                <p>Developed backend, database, automation, and intelligent search solutions for a B2B construction &amp; industrial products platform.</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4">
+                    <li>Developed n8n automation workflows and messaging bots across Bale and Rubika, enabling automated product search and customer communication.</li>
+                    <li>Designed and maintained a PostgreSQL product database containing 10,000+ products with inconsistent naming, multiple brands, languages, and varied measurement formats.</li>
+                    <li>Improved product search and data consistency through database indexing, unique constraints, data normalization, and standardized attributes (size, brand, category, title).</li>
+                    <li>Designed a JSON‑based product metadata structure to extract and normalize key attributes, enabling more accurate and structured search.</li>
+                    <li>Implemented search preprocessing to normalize user queries and extract product characteristics such as size, with conversion between commercial, metric, and inch‑based measurements.</li>
+                    <li>Built automated product price processing workflows that identified new products for insertion and updated existing products while preserving records.</li>
+                    <li>Developed data structures and reporting workflows for monitoring user activity and business KPIs.</li>
                 </ul>
             </div>
             <!-- Slider for Memari Salaar -->
@@ -500,21 +390,17 @@
             <!-- Languages -->
             <div class="glass p-6 rounded-2xl border border-gray-800">
                 <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                    <i class="fas fa-language text-indigo-400"></i>
-                    <span class="lang-fa">زبان‌ها</span>
-                    <span class="lang-en">Languages</span>
+                    <i class="fas fa-language text-indigo-400"></i> Languages
                 </h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><span class="font-semibold text-white">Persian</span> – <span class="lang-fa">زبان مادری</span><span class="lang-en">Native</span></li>
-                    <li><span class="font-semibold text-white">English</span> – <span class="lang-fa">خواندن/نوشتن پیشرفته، شنیداری متوسط، مکالمه پایه (در حال بهبود)</span><span class="lang-en">Advanced reading/writing, Intermediate listening, Basic speaking (actively improving)</span></li>
+                    <li><span class="font-semibold text-white">Persian</span> – Native</li>
+                    <li><span class="font-semibold text-white">English</span> – Advanced reading/writing, Intermediate listening, Basic speaking (actively improving)</li>
                 </ul>
             </div>
             <!-- Soft Skills -->
             <div class="glass p-6 rounded-2xl border border-gray-800">
                 <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                    <i class="fas fa-user-check text-indigo-400"></i>
-                    <span class="lang-fa">مهارت‌های نرم</span>
-                    <span class="lang-en">Soft Skills</span>
+                    <i class="fas fa-user-check text-indigo-400"></i> Soft Skills
                 </h3>
                 <div class="flex flex-wrap gap-3">
                     <span class="skill-tag px-4 py-2 rounded-full text-sm">Problem Solving</span>
@@ -528,13 +414,11 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- FEATURED PROJECTS (با اسلایدر اختصاصی)                      -->
+    <!-- FEATURED PROJECTS (with dedicated sliders)                  -->
     <!-- ============================================================ -->
     <section class="container py-8">
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <i class="fas fa-code text-pink-400"></i>
-            <span class="lang-fa">پروژه‌های شاخص</span>
-            <span class="lang-en">Featured Projects</span>
+            <i class="fas fa-code text-pink-400"></i> Featured Projects
         </h2>
 
         <!-- Project 1: FastAPI Auth -->
@@ -554,13 +438,11 @@
                 </div>
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-shield-alt text-indigo-400 ml-2"></i>
-                        <span class="lang-fa">سیستم احراز هویت FastAPI</span>
-                        <span class="lang-en">FastAPI Authentication System</span>
+                        <i class="fas fa-shield-alt text-indigo-400 mr-2"></i>
+                        FastAPI Authentication System
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        <span class="lang-fa">پیاده‌سازی کامل JWT، چرخش توکن، بلاک‌لیست، کوکی HttpOnly، ردگیری دستگاه و RBAC. بیش از ۱۰۰ تست خودکار با Pytest.</span>
-                        <span class="lang-en">Complete JWT auth with token rotation, blacklisting, HttpOnly cookies, device tracking, and RBAC. 100+ automated tests with Pytest.</span>
+                        Complete JWT authentication with refresh token rotation, blacklisting, HttpOnly cookies, device tracking, and RBAC. Over 100 automated tests with Pytest.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">FastAPI</span>
@@ -569,7 +451,7 @@
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
                     </div>
                     <a href="https://github.com/moeinrezai/FastAPI-Authentication" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                        <i class="fab fa-github"></i> View Repo
                     </a>
                 </div>
             </div>
@@ -591,13 +473,11 @@
                 </div>
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-robot text-blue-400 ml-2"></i>
-                        <span class="lang-fa">مشاور Django با DeepSeek</span>
-                        <span class="lang-en">Django DeepSeek Consultant</span>
+                        <i class="fas fa-robot text-blue-400 mr-2"></i>
+                        Django DeepSeek Consultant
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        <span class="lang-fa">پروژه‌ای برای تجربه کمک‌گرفتن از هوش مصنوعی در توسعه بک‌اند، تولید کد و معماری‌سازی با Django.</span>
-                        <span class="lang-en">Experiment with AI-assisted backend development, code generation, and architecture using Django.</span>
+                        Experiment with AI‑assisted backend development, code generation, and architecture using Django and DeepSeek API.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
@@ -605,7 +485,7 @@
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
                     </div>
                     <a href="https://github.com/moeinrezai/Django-DeepSeek-Consultant" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                        <i class="fab fa-github"></i> View Repo
                     </a>
                 </div>
             </div>
@@ -628,13 +508,11 @@
                 </div>
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-home text-green-400 ml-2"></i>
-                        <span class="lang-fa">بک‌اند پلتفرم املاک</span>
-                        <span class="lang-en">Real-Estate Backend</span>
+                        <i class="fas fa-home text-green-400 mr-2"></i>
+                        Real‑Estate Backend
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        <span class="lang-fa">مدیریت املاک، کاربران، جستجوی پیشرفته با Django REST Framework، PostgreSQL و Redis. پشتیبانی از جستجوی صوتی به فارسی.</span>
-                        <span class="lang-en">Property management, user management, advanced search with Django REST Framework, PostgreSQL, and Redis. Supports Persian voice search.</span>
+                        Property management, user management, advanced search with Django REST Framework, PostgreSQL, and Redis. Supports Persian voice search.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
@@ -643,7 +521,7 @@
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Redis</span>
                     </div>
                     <a href="https://github.com/moeinrezai/Real-Estate-Backend" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                        <i class="fab fa-github"></i> View Repo
                     </a>
                 </div>
             </div>
@@ -654,14 +532,8 @@
     <!-- FOOTER                                                       -->
     <!-- ============================================================ -->
     <footer class="container py-10 text-center text-gray-600 text-sm border-t border-gray-800 mt-10">
-        <p>
-            <span class="lang-fa">ساخته شده با <i class="fas fa-heart text-red-500"></i> توسط معین رضایی</span>
-            <span class="lang-en">Built with <i class="fas fa-heart text-red-500"></i> by Moein Rezaie</span>
-        </p>
-        <p class="mt-1 text-xs">
-            <span class="lang-fa">همیشه به فکر کد تمیز و پایدار باشید.</span>
-            <span class="lang-en">Always thinking about clean, sustainable code.</span>
-        </p>
+        <p>Built with <i class="fas fa-heart text-red-500"></i> by Moein Rezaie</p>
+        <p class="mt-1 text-xs">Always thinking about clean, sustainable code.</p>
     </footer>
 
     <!-- ============================================================ -->
@@ -676,32 +548,7 @@
 
     <script>
         // ============================================================
-        // 1. LANGUAGE TOGGLE
-        // ============================================================
-        const toggleBtn = document.getElementById('langToggle');
-        const langLabel = document.getElementById('langLabel');
-        let currentLang = 'fa'; // 'fa' or 'en'
-
-        toggleBtn.addEventListener('click', function() {
-            if (currentLang === 'fa') {
-                document.body.classList.remove('lang-fa');
-                document.body.classList.add('lang-en');
-                currentLang = 'en';
-                langLabel.textContent = 'English';
-                document.documentElement.lang = 'en';
-                document.documentElement.dir = 'ltr';
-            } else {
-                document.body.classList.remove('lang-en');
-                document.body.classList.add('lang-fa');
-                currentLang = 'fa';
-                langLabel.textContent = 'فارسی';
-                document.documentElement.lang = 'fa';
-                document.documentElement.dir = 'rtl';
-            }
-        });
-
-        // ============================================================
-        // 2. INIT SWIPER SLIDERS
+        // INIT SWIPER SLIDERS
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             const swiperConfig = {
@@ -723,7 +570,6 @@
                 }
             };
 
-            // All sliders
             const sliders = [
                 '.hootam-swiper',
                 '.paksaaz-swiper',
@@ -742,17 +588,14 @@
             });
 
             // ============================================================
-            // 3. GLIGHTBOX (lightbox for images)
+            // GLIGHTBOX (lightbox for images)
             // ============================================================
-            const lightbox = GLightbox({
+            GLightbox({
                 selector: '.glightbox',
                 touchNavigation: true,
                 loop: true,
                 autoplayVideos: false,
             });
-
-            // Refresh lightbox when language changes (optional)
-            // Actually GLightbox works fine without refresh.
         });
     </script>
 
