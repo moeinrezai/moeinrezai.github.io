@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>معین رضایی · برنامه‌نویس بک‌اند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #0b0e14;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glow-text {
+            background: linear-gradient(135deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+            border-color: #818cf8;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            border-color: #818cf8;
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2);
+        }
+        .screenshot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .screenshot:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+<body class="text-gray-300 antialiased">
+
+    <div class="max-w-5xl mx-auto px-6 py-12 lg:py-20">
+
+        <!-- هدر + پروفایل -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
+            <img src="https://raw.githubusercontent.com/moeinrezai/moeinrezai/main/my-pic1.png"
+                class="w-32 h-32 rounded-2xl border-2 border-indigo-500/50 shadow-2xl shadow-indigo-500/20 object-cover"
+                alt="Moein Rezaie" />
+            <div class="text-center md:text-right">
+                <h1 class="text-4xl lg:text-5xl font-black text-white">معین رضایی</h1>
+                <p class="text-xl text-indigo-400 font-medium mt-1">توسعه‌دهنده بک‌اند · Python · Django · FastAPI</p>
+                <p class="text-gray-400 max-w-2xl mt-3 leading-relaxed">
+                    سیستم‌های پشتیبان با معماری تمیز، امن و مقیاس‌پذیر طراحی می‌کنم.
+                    توی کارم به کیفیت، تست‌پذیری و بهینه‌سازی دیتابیس اهمیت ویژه‌ای می‌دم.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-5">
+                    <a href="https://github.com/moeinrezai" target="_blank"
+                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-github"></i> گیت‌هاب
+                    </a>
+                    <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank"
+                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-linkedin-in"></i> لینکدین
+                    </a>
+                    <a href="mailto:moeinrezaie516@gmail.com"
+                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fas fa-envelope"></i> ایمیل
+                    </a>
+                    <a href="https://t.me/moein9401" target="_blank"
+                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-telegram-plane"></i> تلگرام
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- مهارت‌های فنی -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fas fa-cogs text-indigo-400"></i> تخصص‌های فنی
+            </h2>
+            <div class="flex flex-wrap gap-3">
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Python</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Django</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">DRF</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">FastAPI</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Redis</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Celery</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Nginx</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">JWT / RBAC</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">Pytest</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">GitHub Actions</span>
+                <span class="skill-tag px-4 py-2 rounded-full text-sm">n8n</span>
+            </div>
+        </div>
+
+        <!-- چالش‌های حل‌شده -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fas fa-bolt text-yellow-400"></i> چند نمونه کار واقعی
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
+                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-database"></i></div>
+                    <h3 class="text-white font-bold text-lg">پاکسازی و نرمال‌سازی داده</h3>
+                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                        دیتابیس شامل ۱۰,۰۰۰+ محصول ساختمانی با نام‌های نامنظم و واحدهای مختلف.
+                        با ایندکس‌گذاری و ساختار JSON متادیتا، جستجو رو قابل‌استفاده کردم.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
+                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-white font-bold text-lg">بهبود سرعت API</h3>
+                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                        در یک پلتفرم منابع انسانی، با کش Redis و بازنویسی کوئری‌های N+1،
+                        زمان پاسخ‌دهی رو حدود <span class="text-green-400 font-bold">۳۵٪</span> کاهش دادم.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
+                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-lock"></i></div>
+                    <h3 class="text-white font-bold text-lg">سیستم مجوزدهی (RBAC)</h3>
+                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                        پیاده‌سازی سطوح دسترسی برای مدیران، کارمندان و ادمین‌ها. تمام لبه‌ها رو تست زدم
+                        تا مطمئن بشم کسی به داده‌های خارج از سطح دسترسی‌اش دسترسی نداره.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
+                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-tasks"></i></div>
+                    <h3 class="text-white font-bold text-lg">پردازش ناهمگام (Async)</h3>
+                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                        انتقال ارسال ایمیل و نوتیفیکیشن‌ها به Celery تا API سریع بمونه.
+                        مدیریت خودکار خطاها و تلاش مجدد (Retry) برای مواقع خرابی.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- پروژه‌های شاخص با اسکرین‌شات -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fas fa-code text-pink-400"></i> پروژه‌های شاخص
+            </h2>
+
+            <!-- پروژه ۱: FastAPI Authentication -->
+            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover mb-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-2/5">
+                        <img src="assets/images/fastapi-auth.png" 
+                             alt="اسکرین‌شات سیستم احراز هویت FastAPI"
+                             class="screenshot rounded-xl border border-gray-700 w-full" 
+                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=FastAPI+Auth'"/>
+                    </div>
+                    <div class="md:w-3/5">
+                        <h3 class="text-xl font-bold text-white">
+                            <i class="fas fa-shield-alt text-indigo-400 ml-2"></i>
+                            سیستم احراز هویت FastAPI
+                        </h3>
+                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
+                            پیاده‌سازی کامل JWT، چرخش توکن، بلاک‌لیست، کوکی HttpOnly، ردگیری دستگاه و RBAC.
+                            بیش از ۱۰۰ تست خودکار با Pytest نوشته شده.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">FastAPI</span>
+                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">Pydantic</span>
+                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">SQLAlchemy</span>
+                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">PostgreSQL</span>
+                        </div>
+                        <a href="https://github.com/moeinrezai/FastAPI-Authentication" target="_blank"
+                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                            <i class="fab fa-github"></i> مشاهده ریپو
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- پروژه ۲: Django DeepSeek Consultant -->
+            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover mb-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-2/5">
+                        <img src="assets/images/django-consultant.png" 
+                             alt="اسکرین‌شات پروژه Django DeepSeek"
+                             class="screenshot rounded-xl border border-gray-700 w-full"
+                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=Django+DeepSeek'"/>
+                    </div>
+                    <div class="md:w-3/5">
+                        <h3 class="text-xl font-bold text-white">
+                            <i class="fas fa-robot text-blue-400 ml-2"></i>
+                            مشاور Django با DeepSeek
+                        </h3>
+                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
+                            پروژه‌ای برای تجربه کمک‌گرفتن از هوش مصنوعی در توسعه بک‌اند، تولید کد و معماری‌سازی با Django.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">Django</span>
+                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">DeepSeek API</span>
+                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">PostgreSQL</span>
+                        </div>
+                        <a href="https://github.com/moeinrezai/Django-DeepSeek-Consultant" target="_blank"
+                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                            <i class="fab fa-github"></i> مشاهده ریپو
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- پروژه ۳: Real-Estate Backend -->
+            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-2/5">
+                        <img src="assets/images/real-estate-api.png" 
+                             alt="اسکرین‌شات پروژه املاک"
+                             class="screenshot rounded-xl border border-gray-700 w-full"
+                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=Real+Estate+API'"/>
+                    </div>
+                    <div class="md:w-3/5">
+                        <h3 class="text-xl font-bold text-white">
+                            <i class="fas fa-home text-green-400 ml-2"></i>
+                            بک‌اند پلتفرم املاک
+                        </h3>
+                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
+                            مدیریت املاک، کاربران، جستجوی پیشرفته با Django REST Framework، PostgreSQL و Redis.
+                            پشتیبانی از جستجوی صوتی به فارسی.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">Django</span>
+                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">DRF</span>
+                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">PostgreSQL</span>
+                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">Redis</span>
+                        </div>
+                        <a href="https://github.com/moeinrezai/Real-Estate-Backend" target="_blank"
+                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                            <i class="fab fa-github"></i> مشاهده ریپو
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- فوتر -->
+        <div class="text-center text-gray-600 text-sm border-t border-gray-800 pt-10 mt-6">
+            <p>ساخته شده با <i class="fas fa-heart text-red-500"></i> توسط معین رضایی</p>
+            <p class="mt-1 text-xs">همیشه به فکر کد تمیز و پایدار باشید.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
