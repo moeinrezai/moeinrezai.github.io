@@ -17,6 +17,11 @@
     <!-- GLightbox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <style>
         /* ====== RESET & BASE ====== */
         * {
@@ -25,7 +30,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: #0b0e14;
             color: #d1d5db;
             transition: background 0.3s;
@@ -55,6 +60,8 @@
             border: 1px solid rgba(99, 102, 241, 0.2);
             transition: all 0.25s ease;
             cursor: default;
+            font-weight: 500;
+            letter-spacing: 0.01em;
         }
         .skill-tag:hover {
             background: rgba(99, 102, 241, 0.25);
@@ -124,6 +131,41 @@
                 height: 160px;
             }
         }
+
+        /* ====== PROFILE IMAGE FIX ====== */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 1.5rem;
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.25);
+            flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        /* ====== BADGE STYLING ====== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #d1d5db;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .badge i {
+            color: #818cf8;
+        }
     </style>
 </head>
 <body>
@@ -132,16 +174,27 @@
     <!-- HEADER / PROFILE                                             -->
     <!-- ============================================================ -->
     <header class="container py-8 md:py-12">
-        <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
 
-            <!-- Avatar -->
-            <img src="assets/images/my-pic.png"
-                 alt="Moein Rezaie"
-                 class="w-32 h-32 md:w-40 md:h-40 rounded-2xl border-2 border-indigo-500/40 shadow-2xl shadow-indigo-500/20 object-cover flex-shrink-0">
+            <!-- Avatar - Left Side -->
+            <div class="flex-shrink-0 flex flex-col items-center gap-3">
+                <img src="assets/images/my-pic.png"
+                     alt="Moein Rezaie"
+                     class="profile-img">
+                <!-- Badges: Stars & Views -->
+                <div class="flex flex-wrap justify-center gap-2 mt-1">
+                    <span class="badge">
+                        <i class="fas fa-star"></i> <span id="totalStars">1.2k</span>
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-eye"></i> <span id="profileViews">4.8k</span>
+                    </span>
+                </div>
+            </div>
 
-            <!-- Info -->
+            <!-- Info - Right Side -->
             <div class="flex-1 text-center md:text-right">
-                <h1 class="text-3xl md:text-5xl font-black text-white">Moein Rezaie</h1>
+                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Moein Rezaie</h1>
                 <p class="text-lg md:text-xl text-indigo-400 font-medium mt-1">Backend Developer · Python · Django · FastAPI</p>
 
                 <!-- Summary -->
@@ -235,7 +288,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROFESSIONAL EXPERIENCE                                      -->
+    <!-- PROFESSIONAL EXPERIENCE (بدون اسلایدر)                      -->
     <!-- ============================================================ -->
     <section class="container py-8">
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
@@ -262,19 +315,6 @@
                     <li>Wrote automated tests covering authentication, authorization, API behavior, and HTTP status codes.</li>
                 </ul>
             </div>
-            <!-- Slider for Hootam -->
-            <div class="mt-5">
-                <div class="swiper hootam-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="assets/images/hootam-1.png" class="glightbox"><img src="assets/images/hootam-1.png" alt="Hootam 1"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/hootam-2.png" class="glightbox"><img src="assets/images/hootam-2.png" alt="Hootam 2"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/hootam-3.png" class="glightbox"><img src="assets/images/hootam-3.png" alt="Hootam 3"></a></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
         </div>
 
         <!-- ====== 2. PAKSAAZ SHIMI ====== -->
@@ -295,18 +335,6 @@
                     <li>Refactored database and backend components as requirements evolved, maintaining flexibility as the development team and project scope expanded.</li>
                     <li>Collaborated with the team to implement frequent database and business-logic changes based on evolving client and management requirements.</li>
                 </ul>
-            </div>
-            <!-- Slider for Paksaaz -->
-            <div class="mt-5">
-                <div class="swiper paksaaz-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="assets/images/paksaaz-1.png" class="glightbox"><img src="assets/images/paksaaz-1.png" alt="Paksaaz 1"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/paksaaz-2.png" class="glightbox"><img src="assets/images/paksaaz-2.png" alt="Paksaaz 2"></a></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
             </div>
         </div>
 
@@ -330,19 +358,6 @@
                     <li>Implemented backend support for Persian voice‑based property search, allowing users to search listings using natural spoken queries.</li>
                 </ul>
             </div>
-            <!-- Slider for Hooshibina -->
-            <div class="mt-5">
-                <div class="swiper hooshbina-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="assets/images/hooshbina-1.png" class="glightbox"><img src="assets/images/hooshbina-1.png" alt="Hooshibina 1"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/hooshbina-2.png" class="glightbox"><img src="assets/images/hooshbina-2.png" alt="Hooshibina 2"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/hooshbina-3.png" class="glightbox"><img src="assets/images/hooshbina-3.png" alt="Hooshibina 3"></a></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
         </div>
 
         <!-- ====== 4. MEMARI SALAAR ====== -->
@@ -365,19 +380,6 @@
                     <li>Built automated product price processing workflows that identified new products for insertion and updated existing products while preserving records.</li>
                     <li>Developed data structures and reporting workflows for monitoring user activity and business KPIs.</li>
                 </ul>
-            </div>
-            <!-- Slider for Memari Salaar -->
-            <div class="mt-5">
-                <div class="swiper memari-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="assets/images/memari-1.png" class="glightbox"><img src="assets/images/memari-1.png" alt="Memari 1"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/memari-2.png" class="glightbox"><img src="assets/images/memari-2.png" alt="Memari 2"></a></div>
-                        <div class="swiper-slide"><a href="assets/images/memari-3.png" class="glightbox"><img src="assets/images/memari-3.png" alt="Memari 3"></a></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -414,22 +416,22 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- FEATURED PROJECTS (with dedicated sliders)                  -->
+    <!-- FEATURED PROJECTS (با اسلایدر)                               -->
     <!-- ============================================================ -->
     <section class="container py-8">
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
             <i class="fas fa-code text-pink-400"></i> Featured Projects
         </h2>
 
-        <!-- Project 1: FastAPI Auth -->
+        <!-- Project 1: FastAPI Authentication -->
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-2/5">
                     <div class="swiper fastapi-swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="assets/images/fastapi-1.png" class="glightbox"><img src="assets/images/fastapi-1.png" alt="FastAPI Auth 1"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/fastapi-2.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/fastapi-3.png" class="glightbox"><img src="assets/images/fastapi-3.png" alt="FastAPI Auth 3"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/fastapi-1.png" class="glightbox"><img src="assets/images/fastapi-1.png" alt="FastAPI Auth 1" loading="lazy"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/fastapi-2.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2" loading="lazy"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/fastapi-3.png" class="glightbox"><img src="assets/images/fastapi-3.png" alt="FastAPI Auth 3" loading="lazy"></a></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
@@ -439,10 +441,10 @@
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
                         <i class="fas fa-shield-alt text-indigo-400 mr-2"></i>
-                        FastAPI Authentication System
+                        FastAPI Authentication
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        Complete JWT authentication with refresh token rotation, blacklisting, HttpOnly cookies, device tracking, and RBAC. Over 100 automated tests with Pytest.
+                        A secure and production-oriented FastAPI authentication system with JWT, RBAC, session management, HttpOnly cookies, token rotation, device fingerprinting, and security features. <strong>106 tests passing.</strong>
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">FastAPI</span>
@@ -457,14 +459,14 @@
             </div>
         </div>
 
-        <!-- Project 2: Django DeepSeek -->
+        <!-- Project 2: Drf-Authentication-JWT -->
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-2/5">
-                    <div class="swiper deepseek-swiper">
+                    <div class="swiper drf-swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="assets/images/deepseek-1.png" class="glightbox"><img src="assets/images/deepseek-1.png" alt="DeepSeek 1"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/deepseek-2.png" class="glightbox"><img src="assets/images/deepseek-2.png" alt="DeepSeek 2"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/drf-1.png" class="glightbox"><img src="assets/images/drf-1.png" alt="DRF JWT 1" loading="lazy"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/drf-2.png" class="glightbox"><img src="assets/images/drf-2.png" alt="DRF JWT 2" loading="lazy"></a></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
@@ -473,33 +475,34 @@
                 </div>
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-robot text-blue-400 mr-2"></i>
-                        Django DeepSeek Consultant
+                        <i class="fas fa-key text-yellow-400 mr-2"></i>
+                        DRF Authentication JWT
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        Experiment with AI‑assisted backend development, code generation, and architecture using Django and DeepSeek API.
+                        Modular, scalable JWT authentication system built with Django REST Framework. Includes user registration, login, token refresh, blacklist, and customizable permission logic. Designed for production-ready SaaS backends with atomic operations and clean API boundaries.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DeepSeek API</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">JWT</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
                     </div>
-                    <a href="https://github.com/moeinrezai/Django-DeepSeek-Consultant" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                    <a href="https://github.com/moeinrezai/drf-authentication-jwt" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
                         <i class="fab fa-github"></i> View Repo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Project 3: Real-Estate Backend -->
+        <!-- Project 3: Django-Secure-Auth -->
         <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-2/5">
-                    <div class="swiper realestate-swiper">
+                    <div class="swiper secure-swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="assets/images/realestate-1.png" class="glightbox"><img src="assets/images/realestate-1.png" alt="RealEstate 1"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/realestate-2.png" class="glightbox"><img src="assets/images/realestate-2.png" alt="RealEstate 2"></a></div>
-                            <div class="swiper-slide"><a href="assets/images/realestate-3.png" class="glightbox"><img src="assets/images/realestate-3.png" alt="RealEstate 3"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/secure-1.png" class="glightbox"><img src="assets/images/secure-1.png" alt="Secure Auth 1" loading="lazy"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/secure-2.png" class="glightbox"><img src="assets/images/secure-2.png" alt="Secure Auth 2" loading="lazy"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/secure-3.png" class="glightbox"><img src="assets/images/secure-3.png" alt="Secure Auth 3" loading="lazy"></a></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
@@ -508,19 +511,19 @@
                 </div>
                 <div class="md:w-3/5">
                     <h3 class="text-xl font-bold text-white">
-                        <i class="fas fa-home text-green-400 mr-2"></i>
-                        Real‑Estate Backend
+                        <i class="fas fa-lock text-green-400 mr-2"></i>
+                        Django Secure Auth
                     </h3>
                     <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                        Property management, user management, advanced search with Django REST Framework, PostgreSQL, and Redis. Supports Persian voice search.
+                        A security-focused Django REST Framework authentication platform featuring JWT access/refresh tokens, refresh token rotation and reuse detection, Iranian phone OTP authentication, Redis-based rate limiting and hybrid state management, session tracking, RBAC, audit logging, device/IP tracking, and comprehensive security testing.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Redis</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">OTP</span>
                     </div>
-                    <a href="https://github.com/moeinrezai/Real-Estate-Backend" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                    <a href="https://github.com/moeinrezai/django-secure-auth" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
                         <i class="fab fa-github"></i> View Repo
                     </a>
                 </div>
@@ -548,7 +551,7 @@
 
     <script>
         // ============================================================
-        // INIT SWIPER SLIDERS
+        // INIT SWIPER SLIDERS (فقط برای بخش پروژه‌ها)
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             const swiperConfig = {
@@ -570,17 +573,14 @@
                 }
             };
 
-            const sliders = [
-                '.hootam-swiper',
-                '.paksaaz-swiper',
-                '.hooshbina-swiper',
-                '.memari-swiper',
+            // فقط اسلایدرهای پروژه‌ها
+            const projectSliders = [
                 '.fastapi-swiper',
-                '.deepseek-swiper',
-                '.realestate-swiper'
+                '.drf-swiper',
+                '.secure-swiper'
             ];
 
-            sliders.forEach(selector => {
+            projectSliders.forEach(selector => {
                 const el = document.querySelector(selector);
                 if (el) {
                     new Swiper(el, swiperConfig);
@@ -588,7 +588,7 @@
             });
 
             // ============================================================
-            // GLIGHTBOX (lightbox for images)
+            // GLIGHTBOX (بزرگنمایی تصاویر)
             // ============================================================
             GLightbox({
                 selector: '.glightbox',
@@ -597,6 +597,20 @@
                 autoplayVideos: false,
             });
         });
+
+        // ============================================================
+        // (اختیاری) دریافت تعداد واقعی ستاره‌ها و بازدید از GitHub API
+        // ============================================================
+        // برای دریافت تعداد ستاره‌ها می‌توانید از API گیت‌هاب استفاده کنید:
+        // fetch('https://api.github.com/users/moeinrezai/repos')
+        //   .then(res => res.json())
+        //   .then(data => {
+        //     const total = data.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+        //     document.getElementById('totalStars').textContent = total;
+        //   });
+        //
+        // برای بازدید، از سرویس‌های خارجی مانند komarev استفاده کنید یا به صورت دستی تنظیم کنید.
+        // در حال حاضر اعداد نمایشی هستند.
     </script>
 
 </body>
