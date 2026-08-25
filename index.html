@@ -1,264 +1,760 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>معین رضایی · برنامه‌نویس بک‌اند</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معین رضایی · Moein Rezaie · Backend Developer</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- GLightbox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
+
+    <!-- Vazirmatn Font (Persian) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+        /* ====== RESET & BASE ====== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Vazirmatn', sans-serif;
             background: #0b0e14;
+            color: #d1d5db;
+            transition: background 0.3s;
+            overflow-x: hidden;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ====== GLASS EFFECT ====== */
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .glow-text {
-            background: linear-gradient(135deg, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glass-hover:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 30px -8px rgba(99, 102, 241, 0.15);
         }
+
+        /* ====== SKILL TAGS ====== */
         .skill-tag {
-            background: rgba(99, 102, 241, 0.15);
+            background: rgba(99, 102, 241, 0.12);
             border: 1px solid rgba(99, 102, 241, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            cursor: default;
         }
         .skill-tag:hover {
-            background: rgba(99, 102, 241, 0.3);
-            transform: translateY(-2px);
+            background: rgba(99, 102, 241, 0.25);
+            transform: translateY(-3px);
             border-color: #818cf8;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
         }
-        .card-hover {
-            transition: all 0.3s ease;
+
+        /* ====== LANGUAGE TOGGLE ====== */
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .card-hover:hover {
-            transform: translateY(-6px);
+        .lang-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
             border-color: #818cf8;
-            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2);
+            color: #fff;
         }
-        .screenshot {
-            transition: all 0.3s ease;
+        .lang-btn .active-lang {
+            color: #818cf8;
+        }
+
+        /* ====== HIDE/SHOW LANG ====== */
+        .lang-fa { display: block; }
+        .lang-en { display: none; }
+        body.lang-en .lang-fa { display: none; }
+        body.lang-en .lang-en { display: block; }
+        body.lang-fa .lang-fa { display: block; }
+        body.lang-fa .lang-en { display: none; }
+
+        /* ====== SWIPER CUSTOM ====== */
+        .swiper {
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.3s;
             cursor: pointer;
         }
-        .screenshot:hover {
+        .swiper-slide img:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #818cf8 !important;
+            background: rgba(0,0,0,0.5);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.2rem !important;
+            font-weight: 700;
+        }
+        .swiper-pagination-bullet {
+            background: #818cf8 !important;
+            opacity: 0.6;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: #818cf8 !important;
+        }
+
+        /* ====== GLIGHTBOX OVERRIDE ====== */
+        .glightbox-clean .gclose, 
+        .glightbox-clean .gnext, 
+        .glightbox-clean .gprev {
+            background: rgba(0,0,0,0.6) !important;
+            border-radius: 50% !important;
+            width: 44px !important;
+            height: 44px !important;
+        }
+        .glightbox-clean .gclose:hover,
+        .glightbox-clean .gnext:hover,
+        .glightbox-clean .gprev:hover {
+            background: rgba(99, 102, 241, 0.8) !important;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .swiper-slide img { height: 160px; }
         }
     </style>
 </head>
-<body class="text-gray-300 antialiased">
+<body class="lang-fa">
 
-    <div class="max-w-5xl mx-auto px-6 py-12 lg:py-20">
+    <!-- ============================================================ -->
+    <!-- HEADER / PROFILE                                             -->
+    <!-- ============================================================ -->
+    <header class="container py-8 md:py-12">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
 
-        <!-- هدر + پروفایل -->
-        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
+            <!-- Avatar -->
             <img src="https://raw.githubusercontent.com/moeinrezai/moeinrezai/main/my-pic1.png"
-                class="w-32 h-32 rounded-2xl border-2 border-indigo-500/50 shadow-2xl shadow-indigo-500/20 object-cover"
-                alt="Moein Rezaie" />
-            <div class="text-center md:text-right">
-                <h1 class="text-4xl lg:text-5xl font-black text-white">معین رضایی</h1>
-                <p class="text-xl text-indigo-400 font-medium mt-1">توسعه‌دهنده بک‌اند · Python · Django · FastAPI</p>
-                <p class="text-gray-400 max-w-2xl mt-3 leading-relaxed">
-                    سیستم‌های پشتیبان با معماری تمیز، امن و مقیاس‌پذیر طراحی می‌کنم.
-                    توی کارم به کیفیت، تست‌پذیری و بهینه‌سازی دیتابیس اهمیت ویژه‌ای می‌دم.
-                </p>
+                 alt="Moein Rezaie"
+                 class="w-32 h-32 md:w-40 md:h-40 rounded-2xl border-2 border-indigo-500/40 shadow-2xl shadow-indigo-500/20 object-cover flex-shrink-0">
+
+            <!-- Info -->
+            <div class="flex-1 text-center md:text-right">
+                <div class="flex flex-wrap items-center justify-center md:justify-between gap-4">
+                    <div>
+                        <h1 class="text-3xl md:text-5xl font-black text-white">
+                            <span class="lang-fa">معین رضایی</span>
+                            <span class="lang-en">Moein Rezaie</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-indigo-400 font-medium mt-1">
+                            <span class="lang-fa">توسعه‌دهنده بک‌اند · Python · Django · FastAPI</span>
+                            <span class="lang-en">Backend Developer · Python · Django · FastAPI</span>
+                        </p>
+                    </div>
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="lang-btn">
+                        <i class="fas fa-globe"></i>
+                        <span id="langLabel">فارسی</span>
+                    </button>
+                </div>
+
+                <!-- Summary -->
+                <div class="mt-4 text-gray-300 leading-relaxed max-w-3xl">
+                    <p class="lang-fa">
+                        توسعه‌دهنده بک‌اند پایتون با تجربه عملی در ساخت سیستم‌های پشتیبان.
+                        متمرکز بر توسعه نرم‌افزار با ساختار تمیز، امنیت، قابلیت نگهداری و مقیاس‌پذیری،
+                        همراه با یادگیری مداوم و به‌روز نگه‌داشتن دانش فنی.
+                        <br><br>
+                        ممکن است همیشه دانش کامل یا پاسخ فوری برای هر مشکلی نداشته باشم، اما وقتی با
+                        شکاف دانشی یا ضعفی مواجه می‌شوم، مسئولیت را می‌پذیرم، آنچه لازم است را یاد می‌گیرم
+                        و برای بهبود خودم و راه‌حل نهایی تلاش می‌کنم. پاسخگویی، کیفیت و رشد مستمر را
+                        بخش‌های اساسی یک مهندس نرم‌افزار حرفه‌ای می‌دانم.
+                    </p>
+                    <p class="lang-en">
+                        Python Backend Developer with hands-on experience building backend systems.
+                        Focused on developing software with clean structure, security, maintainability,
+                        and scalability, while continuously learning and keeping my technical knowledge up to date.
+                        <br><br>
+                        I may not always have complete knowledge or an immediate answer to every problem,
+                        but when I encounter a knowledge gap or weakness, I take responsibility, learn what is needed,
+                        and work to improve both myself and the final solution. I consider accountability, quality,
+                        and continuous growth essential parts of being a professional software engineer.
+                    </p>
+                </div>
+
+                <!-- Social Links -->
                 <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-5">
-                    <a href="https://github.com/moeinrezai" target="_blank"
-                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-github"></i> گیت‌هاب
+                    <a href="https://github.com/moeinrezai" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank"
-                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-linkedin-in"></i> لینکدین
+                    <a href="https://linkedin.com/in/moein-rezaie-846a61349" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
-                    <a href="mailto:moeinrezaie516@gmail.com"
-                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fas fa-envelope"></i> ایمیل
+                    <a href="mailto:moeinrezaie516@gmail.com" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fas fa-envelope"></i> Email
                     </a>
-                    <a href="https://t.me/moein9401" target="_blank"
-                        class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
-                        <i class="fab fa-telegram-plane"></i> تلگرام
+                    <a href="https://t.me/moein9401" target="_blank" class="glass px-4 py-2 rounded-xl text-sm hover:text-white hover:border-indigo-500 transition flex items-center gap-2">
+                        <i class="fab fa-telegram-plane"></i> Telegram
                     </a>
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- مهارت‌های فنی -->
-        <div class="mb-16">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <i class="fas fa-cogs text-indigo-400"></i> تخصص‌های فنی
-            </h2>
-            <div class="flex flex-wrap gap-3">
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Python</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Django</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">DRF</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">FastAPI</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Redis</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Celery</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Nginx</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">JWT / RBAC</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">Pytest</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">GitHub Actions</span>
-                <span class="skill-tag px-4 py-2 rounded-full text-sm">n8n</span>
-            </div>
+    <!-- ============================================================ -->
+    <!-- TECHNICAL SKILLS                                              -->
+    <!-- ============================================================ -->
+    <section class="container py-6">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <i class="fas fa-cogs text-indigo-400"></i>
+            <span class="lang-fa">تخصص‌های فنی</span>
+            <span class="lang-en">Technical Skills</span>
+        </h2>
+
+        <div class="flex flex-wrap gap-2.5">
+            <!-- Backend -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Python</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django REST Framework</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">FastAPI</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Pydantic</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">REST API Design</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">API Versioning</span>
+            <!-- Database -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Django ORM</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">SQL</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Database Design</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Query Optimization</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Indexing</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Data Modeling</span>
+            <!-- Security -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">JWT Authentication</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Token Rotation &amp; Blacklisting</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">RBAC</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Session Management</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Rate Limiting</span>
+            <!-- Caching & Async -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Redis</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Celery</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Background Tasks</span>
+            <!-- Testing -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Pytest</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Unit/Integration/API Testing</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Locust</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Load Testing</span>
+            <!-- DevOps -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker Compose</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Nginx</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Gunicorn</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">GitHub Actions</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Linux</span>
+            <!-- Automation & Tools -->
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">n8n</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Swagger/OpenAPI</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Postman</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Git</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Black</span>
+            <span class="skill-tag px-4 py-2 rounded-full text-sm">Flake8</span>
         </div>
+    </section>
 
-        <!-- چالش‌های حل‌شده -->
-        <div class="mb-16">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <i class="fas fa-bolt text-yellow-400"></i> چند نمونه کار واقعی
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
-                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-database"></i></div>
-                    <h3 class="text-white font-bold text-lg">پاکسازی و نرمال‌سازی داده</h3>
-                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
-                        دیتابیس شامل ۱۰,۰۰۰+ محصول ساختمانی با نام‌های نامنظم و واحدهای مختلف.
-                        با ایندکس‌گذاری و ساختار JSON متادیتا، جستجو رو قابل‌استفاده کردم.
-                    </p>
-                </div>
-                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
-                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-rocket"></i></div>
-                    <h3 class="text-white font-bold text-lg">بهبود سرعت API</h3>
-                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
-                        در یک پلتفرم منابع انسانی، با کش Redis و بازنویسی کوئری‌های N+1،
-                        زمان پاسخ‌دهی رو حدود <span class="text-green-400 font-bold">۳۵٪</span> کاهش دادم.
-                    </p>
-                </div>
-                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
-                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-lock"></i></div>
-                    <h3 class="text-white font-bold text-lg">سیستم مجوزدهی (RBAC)</h3>
-                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
-                        پیاده‌سازی سطوح دسترسی برای مدیران، کارمندان و ادمین‌ها. تمام لبه‌ها رو تست زدم
-                        تا مطمئن بشم کسی به داده‌های خارج از سطح دسترسی‌اش دسترسی نداره.
-                    </p>
-                </div>
-                <div class="glass p-6 rounded-2xl card-hover border border-gray-800">
-                    <div class="text-indigo-400 text-2xl mb-3"><i class="fas fa-tasks"></i></div>
-                    <h3 class="text-white font-bold text-lg">پردازش ناهمگام (Async)</h3>
-                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
-                        انتقال ارسال ایمیل و نوتیفیکیشن‌ها به Celery تا API سریع بمونه.
-                        مدیریت خودکار خطاها و تلاش مجدد (Retry) برای مواقع خرابی.
-                    </p>
-                </div>
+    <!-- ============================================================ -->
+    <!-- PROFESSIONAL EXPERIENCE                                      -->
+    <!-- ============================================================ -->
+    <section class="container py-8">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <i class="fas fa-briefcase text-indigo-400"></i>
+            <span class="lang-fa">تجربه حرفه‌ای</span>
+            <span class="lang-en">Professional Experience</span>
+        </h2>
+
+        <!-- ====== 1. HOOTAM ====== -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">
+                    <span class="lang-fa">هوتام</span>
+                    <span class="lang-en">Hootam</span>
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
+                        <span class="lang-fa">توسعه‌دهنده بک‌اند</span>
+                        <span class="lang-en">Backend Developer</span>
+                    </span>
+                </h3>
+                <span class="text-sm text-gray-500">2024 – Present</span>
             </div>
-        </div>
-
-        <!-- پروژه‌های شاخص با اسکرین‌شات -->
-        <div class="mb-16">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <i class="fas fa-code text-pink-400"></i> پروژه‌های شاخص
-            </h2>
-
-            <!-- پروژه ۱: FastAPI Authentication -->
-            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover mb-6">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="md:w-2/5">
-                        <img src="assets/images/fastapi-auth.png" 
-                             alt="اسکرین‌شات سیستم احراز هویت FastAPI"
-                             class="screenshot rounded-xl border border-gray-700 w-full" 
-                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=FastAPI+Auth'"/>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p class="lang-fa">
+                    توسعه سرویس‌های بک‌اند برای پلتفرم هوشمند منابع انسانی (HR) مورد استفاده سازمان‌های بزرگ.
+                </p>
+                <p class="lang-en">
+                    Developed backend services for a Smart HR platform used by enterprise organizations.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
+                    <li class="lang-fa">طراحی و توسعه RESTful API با Django REST Framework با معماری نسخه‌بندی شده (api/v1) برای قابلیت نگهداری و مقیاس‌پذیری.</li>
+                    <li class="lang-en">Designed RESTful APIs with Django REST Framework, following a versioned architecture (api/v1) for maintainability and scalability.</li>
+                    <li class="lang-fa">پیاده‌سازی احراز هویت JWT، RBAC و مجوزهای مبتنی بر نقش، با تعریف و تست مرزهای دسترسی برای کارکنان HR، مدیران و سایر نقش‌ها.</li>
+                    <li class="lang-en">Implemented JWT authentication, RBAC, and role-based permissions, defining and testing access boundaries for HR staff, managers, and other roles.</li>
+                    <li class="lang-fa">استفاده از Redis برای کش‌کردن و کاهش کوئری‌های غیرضروری دیتابیس و بهبود زمان پاسخ API.</li>
+                    <li class="lang-en">Used Redis caching to reduce unnecessary DB queries and improve API response performance.</li>
+                    <li class="lang-fa">پیاده‌سازی تسک‌های پس‌زمینه Celery برای عملیات زمان‌بر مانند پردازش ایمیل و نوتیفیکیشن‌ها.</li>
+                    <li class="lang-en">Implemented Celery background tasks for time‑consuming operations like email & notification processing.</li>
+                    <li class="lang-fa">توسعه گردش‌های کاری اصلی HR شامل ارزیابی‌های حرفه‌ای، اخلاقی و فرهنگی، سرویس‌های رضایت‌سنجی، تخصیص وظایف و یکپارچه‌سازی با سرویس‌های خارجی.</li>
+                    <li class="lang-en">Developed core HR workflows including professional, ethical & cultural assessments, satisfaction services, task assignment, and integration with external HR services.</li>
+                    <li class="lang-fa">نوشتن تست‌های خودکار برای احراز هویت، مجوزها، رفتار API و کدهای وضعیت HTTP.</li>
+                    <li class="lang-en">Wrote automated tests covering authentication, authorization, API behavior, and HTTP status codes.</li>
+                </ul>
+            </div>
+            <!-- Slider for Hootam -->
+            <div class="mt-5">
+                <div class="swiper hootam-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><a href="assets/images/hootam-1.png" class="glightbox"><img src="assets/images/hootam-1.png" alt="Hootam 1"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/hootam-2.png" class="glightbox"><img src="assets/images/hootam-2.png" alt="Hootam 2"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/hootam-3.png" class="glightbox"><img src="assets/images/hootam-3.png" alt="Hootam 3"></a></div>
                     </div>
-                    <div class="md:w-3/5">
-                        <h3 class="text-xl font-bold text-white">
-                            <i class="fas fa-shield-alt text-indigo-400 ml-2"></i>
-                            سیستم احراز هویت FastAPI
-                        </h3>
-                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
-                            پیاده‌سازی کامل JWT، چرخش توکن، بلاک‌لیست، کوکی HttpOnly، ردگیری دستگاه و RBAC.
-                            بیش از ۱۰۰ تست خودکار با Pytest نوشته شده.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">FastAPI</span>
-                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">Pydantic</span>
-                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">SQLAlchemy</span>
-                            <span class="text-xs bg-indigo-500/20 px-3 py-1 rounded-full text-indigo-300">PostgreSQL</span>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 2. PAKSAAZ SHIMI ====== -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">
+                    <span class="lang-fa">پاکساز شیمی</span>
+                    <span class="lang-en">Paksaaz Shimi</span>
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
+                        <span class="lang-fa">توسعه‌دهنده بک‌اند</span>
+                        <span class="lang-en">Backend Developer</span>
+                    </span>
+                </h3>
+                <span class="text-sm text-gray-500">2023 – 2024</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p class="lang-fa">
+                    توسعه و نگهداری سرویس‌های بک‌اند برای پلتفرم مدیریت محصولات با داده‌های متنوع.
+                </p>
+                <p class="lang-en">
+                    Developed and maintained backend services for a product management platform handling diverse product data.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
+                    <li class="lang-fa">طراحی و نگهداری مدل‌های داده محصولات برای حدود ۲۵۰ محصول با متغیرهای اندازه، رنگ، جنس و دسته‌بندی.</li>
+                    <li class="lang-en">Designed & maintained product data models for approx. 250 products with variations in size, color, material, and category.</li>
+                    <li class="lang-fa">استفاده از ایندکس‌گذاری PostgreSQL و بهینه‌سازی کوئری‌های ORM برای بهبود بازیابی داده و پشتیبانی از به‌روزرسانی‌های حجیم.</li>
+                    <li class="lang-en">Used PostgreSQL indexing & optimized ORM queries to improve data retrieval and support bulk updates.</li>
+                    <li class="lang-fa">پیاده‌سازی مدیریت نام‌های مستعار و مترادف برای محصولات به منظور بهبود سازگاری داده‌ها و قابلیت جستجو.</li>
+                    <li class="lang-en">Implemented alias & synonym handling to improve data consistency and searchability.</li>
+                    <li class="lang-fa">بازنویسی (Refactor) دیتابیس و کامپوننت‌های بک‌اند با تغییر نیازمندی‌ها، حفظ انعطاف‌پذیری با گسترش تیم و پروژه.</li>
+                    <li class="lang-en">Refactored DB & backend components as requirements evolved, maintaining flexibility as the team grew.</li>
+                </ul>
+            </div>
+            <!-- Slider for Paksaaz -->
+            <div class="mt-5">
+                <div class="swiper paksaaz-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><a href="assets/images/paksaaz-1.png" class="glightbox"><img src="assets/images/paksaaz-1.png" alt="Paksaaz 1"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/paksaaz-2.png" class="glightbox"><img src="assets/images/paksaaz-2.png" alt="Paksaaz 2"></a></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 3. HOOSHBINA ====== -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">
+                    <span class="lang-fa">هوش بینا</span>
+                    <span class="lang-en">Hooshibina</span>
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
+                        <span class="lang-fa">لید توسعه‌دهنده بک‌اند</span>
+                        <span class="lang-en">Lead Backend Developer</span>
+                    </span>
+                </h3>
+                <span class="text-sm text-gray-500">2022 – 2023</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p class="lang-fa">
+                    رهبری توسعه بک‌اند برای پلتفرم‌های آموزش آنلاین و املاک مبتنی بر هوش مصنوعی.
+                </p>
+                <p class="lang-en">
+                    Led backend development for AI-powered education and real-estate platforms.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
+                    <li class="lang-fa">رهبری تیم توسعه بک‌اند و طراحی سرویس‌های اصلی برای پلتفرم آموزش آنلاین مبتنی بر هوش مصنوعی، پشتیبانی از دانشجویان، مربیان و مدیران پشتیبانی.</li>
+                    <li class="lang-en">Led the backend team & designed core services for an AI-powered online education platform, supporting students, instructors, and support managers.</li>
+                    <li class="lang-fa">پیاده‌سازی مجوزهای مبتنی بر نقش و گردش‌های کاری برای انتخاب دوره و مربی، تیکتینگ پشتیبانی، تکمیل پروفایل و انتقال نقش مربی.</li>
+                    <li class="lang-en">Implemented RBAC and workflows for course/instructor selection, support ticketing, profile completion, and instructor role transitions.</li>
+                    <li class="lang-fa">توسعه سرویس‌های بک‌اند برای پلتفرم وب املاک مبتنی بر هوش مصنوعی، شامل ثبت ملک، مدیریت و تحلیل هوشمند.</li>
+                    <li class="lang-en">Developed backend for an AI-powered real-estate web platform, including property registration, management, and intelligent analysis.</li>
+                    <li class="lang-fa">یکپارچه‌سازی تحلیل تصاویر و نقشه‌های مبتنی بر هوش مصنوعی برای استخراج اطلاعات تقریبی ملک مانند مساحت، ابعاد و ویژگی‌های نقشه از تصاویر ارسالی مالک.</li>
+                    <li class="lang-en">Integrated AI-based image & map analysis to extract approximate property info (area, dimensions, map characteristics) from owner-submitted images.</li>
+                    <li class="lang-fa">پیاده‌سازی پشتیبانی از جستجوی صوتی به فارسی برای املاک، امکان جستجوی طبیعی با گفتار.</li>
+                    <li class="lang-en">Implemented Persian voice-based property search, allowing users to search listings using natural spoken queries.</li>
+                </ul>
+            </div>
+            <!-- Slider for Hooshibina -->
+            <div class="mt-5">
+                <div class="swiper hooshbina-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><a href="assets/images/hooshbina-1.png" class="glightbox"><img src="assets/images/hooshbina-1.png" alt="Hooshibina 1"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/hooshbina-2.png" class="glightbox"><img src="assets/images/hooshbina-2.png" alt="Hooshibina 2"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/hooshbina-3.png" class="glightbox"><img src="assets/images/hooshbina-3.png" alt="Hooshibina 3"></a></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 4. MEMARI SALAAR ====== -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-bold text-white">
+                    <span class="lang-fa">معمار سالار</span>
+                    <span class="lang-en">Memari Salaar</span>
+                    <span class="text-indigo-400 text-base font-normal block md:inline md:mr-3">
+                        <span class="lang-fa">مشاور فنی و لید تیم API/دیتابیس</span>
+                        <span class="lang-en">Technical Consultant &amp; API/Database Team Lead</span>
+                    </span>
+                </h3>
+                <span class="text-sm text-gray-500">2021 – 2022</span>
+            </div>
+            <div class="text-gray-300 leading-relaxed space-y-2">
+                <p class="lang-fa">
+                    توسعه راه‌حل‌های بک‌اند، دیتابیس، اتوماسیون و جستجوی هوشمند برای پلتفرم B2B محصولات ساختمانی و صنعتی.
+                </p>
+                <p class="lang-en">
+                    Developed backend, database, automation, and intelligent search solutions for a B2B construction & industrial products platform.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 pr-4">
+                    <li class="lang-fa">توسعه گردش‌های کاری اتوماسیون با n8n و ربات‌های پیام‌رسان در بله و روبیکا، امکان جستجوی خودکار محصول و ارتباط با مشتریان.</li>
+                    <li class="lang-en">Developed n8n automation workflows & messaging bots across Bale and Rubika, enabling automated product search & customer communication.</li>
+                    <li class="lang-fa">طراحی و نگهداری دیتابیس PostgreSQL شامل ۱۰,۰۰۰+ محصول با نام‌های نامنظم، برندهای متعدد، زبان‌ها و فرمت‌های اندازه‌گیری متنوع.</li>
+                    <li class="lang-en">Designed & maintained a PostgreSQL product DB containing 10,000+ products with inconsistent naming, multiple brands, languages, and varied measurement formats.</li>
+                    <li class="lang-fa">بهبود جستجو و سازگاری داده‌ها از طریق ایندکس‌گذاری، محدودیت‌های یکتا، نرمال‌سازی و استانداردسازی ویژگی‌هایی مانند اندازه، برند، دسته و عنوان.</li>
+                    <li class="lang-en">Improved search & data consistency through indexing, unique constraints, normalization, and standardized attributes (size, brand, category, title).</li>
+                    <li class="lang-fa">طراحی ساختار متادیتای JSON برای استخراج و نرمال‌سازی ویژگی‌های کلیدی از داده‌های محصول، امکان جستجوی دقیق‌تر.</li>
+                    <li class="lang-en">Designed a JSON metadata structure to extract & normalize key attributes, enabling more accurate search.</li>
+                    <li class="lang-fa">پیاده‌سازی پیش‌پردازش جستجو برای نرمال‌سازی پرس‌وجوها و استخراج ویژگی‌هایی مانند اندازه، با تبدیل بین واحدهای تجاری، متریک و اینچ.</li>
+                    <li class="lang-en">Built search preprocessing to normalize queries and extract product characteristics (size, etc.) with unit conversion (commercial, metric, inch).</li>
+                    <li class="lang-fa">ساخت گردش‌های کاری خودکار برای پردازش قیمت محصولات، شناسایی محصولات جدید و به‌روزرسانی محصولات موجود.</li>
+                    <li class="lang-en">Built automated product price processing workflows that identified new products and updated existing ones while preserving records.</li>
+                    <li class="lang-fa">توسعه ساختار داده‌ها و گزارش‌دهی برای مانیتورینگ فعالیت کاربران و KPIهای کسب‌وکار.</li>
+                    <li class="lang-en">Developed data structures & reporting workflows for monitoring user activity and business KPIs.</li>
+                </ul>
+            </div>
+            <!-- Slider for Memari Salaar -->
+            <div class="mt-5">
+                <div class="swiper memari-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><a href="assets/images/memari-1.png" class="glightbox"><img src="assets/images/memari-1.png" alt="Memari 1"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/memari-2.png" class="glightbox"><img src="assets/images/memari-2.png" alt="Memari 2"></a></div>
+                        <div class="swiper-slide"><a href="assets/images/memari-3.png" class="glightbox"><img src="assets/images/memari-3.png" alt="Memari 3"></a></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LANGUAGES & SOFT SKILLS                                      -->
+    <!-- ============================================================ -->
+    <section class="container py-8">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Languages -->
+            <div class="glass p-6 rounded-2xl border border-gray-800">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fas fa-language text-indigo-400"></i>
+                    <span class="lang-fa">زبان‌ها</span>
+                    <span class="lang-en">Languages</span>
+                </h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><span class="font-semibold text-white">Persian</span> – <span class="lang-fa">زبان مادری</span><span class="lang-en">Native</span></li>
+                    <li><span class="font-semibold text-white">English</span> – <span class="lang-fa">خواندن/نوشتن پیشرفته، شنیداری متوسط، مکالمه پایه (در حال بهبود)</span><span class="lang-en">Advanced reading/writing, Intermediate listening, Basic speaking (actively improving)</span></li>
+                </ul>
+            </div>
+            <!-- Soft Skills -->
+            <div class="glass p-6 rounded-2xl border border-gray-800">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                    <i class="fas fa-user-check text-indigo-400"></i>
+                    <span class="lang-fa">مهارت‌های نرم</span>
+                    <span class="lang-en">Soft Skills</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Problem Solving</span>
+                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Technical Leadership</span>
+                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Clean Code Advocate</span>
+                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Collaborative Debugging</span>
+                    <span class="skill-tag px-4 py-2 rounded-full text-sm">Continuous Learner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FEATURED PROJECTS (با اسلایدر اختصاصی)                      -->
+    <!-- ============================================================ -->
+    <section class="container py-8">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <i class="fas fa-code text-pink-400"></i>
+            <span class="lang-fa">پروژه‌های شاخص</span>
+            <span class="lang-en">Featured Projects</span>
+        </h2>
+
+        <!-- Project 1: FastAPI Auth -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-2/5">
+                    <div class="swiper fastapi-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="assets/images/fastapi-1.png" class="glightbox"><img src="assets/images/fastapi-1.png" alt="FastAPI Auth 1"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/fastapi-2.png" class="glightbox"><img src="assets/images/fastapi-2.png" alt="FastAPI Auth 2"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/fastapi-3.png" class="glightbox"><img src="assets/images/fastapi-3.png" alt="FastAPI Auth 3"></a></div>
                         </div>
-                        <a href="https://github.com/moeinrezai/FastAPI-Authentication" target="_blank"
-                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                            <i class="fab fa-github"></i> مشاهده ریپو
-                        </a>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
-            </div>
-
-            <!-- پروژه ۲: Django DeepSeek Consultant -->
-            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover mb-6">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="md:w-2/5">
-                        <img src="assets/images/django-consultant.png" 
-                             alt="اسکرین‌شات پروژه Django DeepSeek"
-                             class="screenshot rounded-xl border border-gray-700 w-full"
-                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=Django+DeepSeek'"/>
+                <div class="md:w-3/5">
+                    <h3 class="text-xl font-bold text-white">
+                        <i class="fas fa-shield-alt text-indigo-400 ml-2"></i>
+                        <span class="lang-fa">سیستم احراز هویت FastAPI</span>
+                        <span class="lang-en">FastAPI Authentication System</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+                        <span class="lang-fa">پیاده‌سازی کامل JWT، چرخش توکن، بلاک‌لیست، کوکی HttpOnly، ردگیری دستگاه و RBAC. بیش از ۱۰۰ تست خودکار با Pytest.</span>
+                        <span class="lang-en">Complete JWT auth with token rotation, blacklisting, HttpOnly cookies, device tracking, and RBAC. 100+ automated tests with Pytest.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">FastAPI</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Pydantic</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">SQLAlchemy</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
                     </div>
-                    <div class="md:w-3/5">
-                        <h3 class="text-xl font-bold text-white">
-                            <i class="fas fa-robot text-blue-400 ml-2"></i>
-                            مشاور Django با DeepSeek
-                        </h3>
-                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
-                            پروژه‌ای برای تجربه کمک‌گرفتن از هوش مصنوعی در توسعه بک‌اند، تولید کد و معماری‌سازی با Django.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">Django</span>
-                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">DeepSeek API</span>
-                            <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300">PostgreSQL</span>
-                        </div>
-                        <a href="https://github.com/moeinrezai/Django-DeepSeek-Consultant" target="_blank"
-                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                            <i class="fab fa-github"></i> مشاهده ریپو
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- پروژه ۳: Real-Estate Backend -->
-            <div class="glass p-6 rounded-2xl border border-gray-800 card-hover">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="md:w-2/5">
-                        <img src="assets/images/real-estate-api.png" 
-                             alt="اسکرین‌شات پروژه املاک"
-                             class="screenshot rounded-xl border border-gray-700 w-full"
-                             onerror="this.src='https://via.placeholder.com/400x250/1a1f2e/818cf8?text=Real+Estate+API'"/>
-                    </div>
-                    <div class="md:w-3/5">
-                        <h3 class="text-xl font-bold text-white">
-                            <i class="fas fa-home text-green-400 ml-2"></i>
-                            بک‌اند پلتفرم املاک
-                        </h3>
-                        <p class="text-gray-400 text-sm mt-1 leading-relaxed">
-                            مدیریت املاک، کاربران، جستجوی پیشرفته با Django REST Framework، PostgreSQL و Redis.
-                            پشتیبانی از جستجوی صوتی به فارسی.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">Django</span>
-                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">DRF</span>
-                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">PostgreSQL</span>
-                            <span class="text-xs bg-green-500/20 px-3 py-1 rounded-full text-green-300">Redis</span>
-                        </div>
-                        <a href="https://github.com/moeinrezai/Real-Estate-Backend" target="_blank"
-                            class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
-                            <i class="fab fa-github"></i> مشاهده ریپو
-                        </a>
-                    </div>
+                    <a href="https://github.com/moeinrezai/FastAPI-Authentication" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- فوتر -->
-        <div class="text-center text-gray-600 text-sm border-t border-gray-800 pt-10 mt-6">
-            <p>ساخته شده با <i class="fas fa-heart text-red-500"></i> توسط معین رضایی</p>
-            <p class="mt-1 text-xs">همیشه به فکر کد تمیز و پایدار باشید.</p>
+        <!-- Project 2: Django DeepSeek -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover mb-6">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-2/5">
+                    <div class="swiper deepseek-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="assets/images/deepseek-1.png" class="glightbox"><img src="assets/images/deepseek-1.png" alt="DeepSeek 1"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/deepseek-2.png" class="glightbox"><img src="assets/images/deepseek-2.png" alt="DeepSeek 2"></a></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <h3 class="text-xl font-bold text-white">
+                        <i class="fas fa-robot text-blue-400 ml-2"></i>
+                        <span class="lang-fa">مشاور Django با DeepSeek</span>
+                        <span class="lang-en">Django DeepSeek Consultant</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+                        <span class="lang-fa">پروژه‌ای برای تجربه کمک‌گرفتن از هوش مصنوعی در توسعه بک‌اند، تولید کد و معماری‌سازی با Django.</span>
+                        <span class="lang-en">Experiment with AI-assisted backend development, code generation, and architecture using Django.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DeepSeek API</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
+                    </div>
+                    <a href="https://github.com/moeinrezai/Django-DeepSeek-Consultant" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <!-- Project 3: Real-Estate Backend -->
+        <div class="glass p-6 rounded-2xl border border-gray-800 glass-hover">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-2/5">
+                    <div class="swiper realestate-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="assets/images/realestate-1.png" class="glightbox"><img src="assets/images/realestate-1.png" alt="RealEstate 1"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/realestate-2.png" class="glightbox"><img src="assets/images/realestate-2.png" alt="RealEstate 2"></a></div>
+                            <div class="swiper-slide"><a href="assets/images/realestate-3.png" class="glightbox"><img src="assets/images/realestate-3.png" alt="RealEstate 3"></a></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <h3 class="text-xl font-bold text-white">
+                        <i class="fas fa-home text-green-400 ml-2"></i>
+                        <span class="lang-fa">بک‌اند پلتفرم املاک</span>
+                        <span class="lang-en">Real-Estate Backend</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+                        <span class="lang-fa">مدیریت املاک، کاربران، جستجوی پیشرفته با Django REST Framework، PostgreSQL و Redis. پشتیبانی از جستجوی صوتی به فارسی.</span>
+                        <span class="lang-en">Property management, user management, advanced search with Django REST Framework, PostgreSQL, and Redis. Supports Persian voice search.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Django</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DRF</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Redis</span>
+                    </div>
+                    <a href="https://github.com/moeinrezai/Real-Estate-Backend" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 border border-indigo-400/30 px-5 py-2 rounded-xl text-sm transition hover:bg-indigo-500/10">
+                        <i class="fab fa-github"></i> <span class="lang-fa">مشاهده ریپو</span><span class="lang-en">View Repo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                       -->
+    <!-- ============================================================ -->
+    <footer class="container py-10 text-center text-gray-600 text-sm border-t border-gray-800 mt-10">
+        <p>
+            <span class="lang-fa">ساخته شده با <i class="fas fa-heart text-red-500"></i> توسط معین رضایی</span>
+            <span class="lang-en">Built with <i class="fas fa-heart text-red-500"></i> by Moein Rezaie</span>
+        </p>
+        <p class="mt-1 text-xs">
+            <span class="lang-fa">همیشه به فکر کد تمیز و پایدار باشید.</span>
+            <span class="lang-en">Always thinking about clean, sustainable code.</span>
+        </p>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                      -->
+    <!-- ============================================================ -->
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- GLightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+
+    <script>
+        // ============================================================
+        // 1. LANGUAGE TOGGLE
+        // ============================================================
+        const toggleBtn = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        let currentLang = 'fa'; // 'fa' or 'en'
+
+        toggleBtn.addEventListener('click', function() {
+            if (currentLang === 'fa') {
+                document.body.classList.remove('lang-fa');
+                document.body.classList.add('lang-en');
+                currentLang = 'en';
+                langLabel.textContent = 'English';
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+            } else {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-fa');
+                currentLang = 'fa';
+                langLabel.textContent = 'فارسی';
+                document.documentElement.lang = 'fa';
+                document.documentElement.dir = 'rtl';
+            }
+        });
+
+        // ============================================================
+        // 2. INIT SWIPER SLIDERS
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiperConfig = {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 1, spaceBetween: 10 },
+                    768: { slidesPerView: 1, spaceBetween: 15 },
+                }
+            };
+
+            // All sliders
+            const sliders = [
+                '.hootam-swiper',
+                '.paksaaz-swiper',
+                '.hooshbina-swiper',
+                '.memari-swiper',
+                '.fastapi-swiper',
+                '.deepseek-swiper',
+                '.realestate-swiper'
+            ];
+
+            sliders.forEach(selector => {
+                const el = document.querySelector(selector);
+                if (el) {
+                    new Swiper(el, swiperConfig);
+                }
+            });
+
+            // ============================================================
+            // 3. GLIGHTBOX (lightbox for images)
+            // ============================================================
+            const lightbox = GLightbox({
+                selector: '.glightbox',
+                touchNavigation: true,
+                loop: true,
+                autoplayVideos: false,
+            });
+
+            // Refresh lightbox when language changes (optional)
+            // Actually GLightbox works fine without refresh.
+        });
+    </script>
 
 </body>
 </html>
